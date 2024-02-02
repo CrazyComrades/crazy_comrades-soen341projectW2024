@@ -10,7 +10,6 @@ Yazid Dawiss	40092814
 
 Roles of each member:
 Front End Engineers:
-Researcher/Test Engineer: Steven Tran 
 Back End Engineers:
 
 Programming language chosen: Python for back end, HTML CSS for front end, FLASK as a web framework
