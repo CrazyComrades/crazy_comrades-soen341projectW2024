@@ -9,7 +9,8 @@ David Girma	40208764
 Yazid Dawiss	40092814	 
 
 Roles of each member:
-Main Front End Programmer:
-Assistant Front End: 
-Researcher/Test Engineer:
-Back End Engineer: who
+Front End Engineers:
+Researcher/Test Engineer: Steven Tran 
+Back End Engineers:
+
+Programming language chosen: 
