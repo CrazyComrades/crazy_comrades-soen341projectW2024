@@ -9,3 +9,7 @@ David Girma	40208764
 Yazid Dawiss	40092814	 
 
 Roles of each member:
+Main Front End Programmer:
+Assistant Front End: 
+Researcher/Test Engineer:
+Back End Engineer:
