@@ -13,5 +13,5 @@ Front End Engineers:
 Researcher/Test Engineer: Steven Tran 
 Back End Engineers:
 
-Programming language chosen: Python for back end, HTML CSS for front end, FLASK for front end web dev
+Programming language chosen: Python for back end, HTML CSS for front end, FLASK as a web framework
 gygyuu
