@@ -13,4 +13,4 @@ Front End Engineers:
 Researcher/Test Engineer: Steven Tran 
 Back End Engineers:
 
-Programming language chosen: 
+Programming language chosen: Python for back end, HTML CSS for front end
