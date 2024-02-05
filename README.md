@@ -9,10 +9,10 @@ David Girma	40208764
 Yazid Dawiss	40092814	 
 
 Roles of each member:
-Front End Engineers: Yazid Dawiss, Mohamed Mrizek, Ba Nam Nguyen
-Assistant Front End:
-Back End Engineers:
-Assistant Back End: Yazid Dawiss, Mohamed Mrizek, Ba Nam Nguyen
+Front End Engineers: Yazid Dawiss, Mohamed Mrizek, David Girma
+Assistant Front End: Ba Nam Nguyen, Steven Tran, Andrew Keleny
+Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny
+Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma
 
 Programming language chosen: Python for back end, HTML CSS for front end, FLASK as a web framework
 
