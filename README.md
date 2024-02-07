@@ -21,6 +21,10 @@ Description of the project:
 
 A car rental application is a software platform designed to facilitate the process of renting vehicles for short periods, typically ranging from a few hours to a few weeks. The application serves as an interface between customers looking to rent vehicles and the car rental company offering those services.
 
+Installation instructions: 
+
+
+
 Core features of the project:
 
 Car rental website. Make, edit or remove reservations. Car listings with photos
