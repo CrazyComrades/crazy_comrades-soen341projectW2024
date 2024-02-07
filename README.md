@@ -14,13 +14,16 @@ Assistant Front End: Ba Nam Nguyen, Steven Tran, Andrew Keleny
 Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny
 Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma
 
-Programming language chosen: Python for back end, HTML CSS for front end, FLASK as a web framework
+Languages & techniques we plan to use: 
+-Python for back end
+-HTML CSS for front end
+-FLASK as a web framework
 
-#Description of the project:
+Description of the project:
 
 A car rental application is a software platform designed to facilitate the process of renting vehicles for short periods, typically ranging from a few hours to a few weeks. The application serves as an interface between customers looking to rent vehicles and the car rental company offering those services.
 
-#Core features of the project:
+Core features of the project:
 
 Sprint 1
 
