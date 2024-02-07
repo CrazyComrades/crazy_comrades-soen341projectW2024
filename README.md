@@ -32,7 +32,7 @@ Car rental website. Make, edit or remove reservations. Car listings with photos
 
 
 Team rules: 
-Each member of the team MUST contribute to the project at least 1 hour per day. All members must attend team meetings once planned.
+Each member of the team MUST contribute to the project at least 1 hour per day. All members must attend team meetings once planned. Always remember to press ccommit on github to save your work
 
 Sprint 1
 
