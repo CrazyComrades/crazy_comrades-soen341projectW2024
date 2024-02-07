@@ -15,9 +15,7 @@ Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny
 Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma
 
 Languages & techniques we plan to use: 
--Python for back end
--HTML CSS for front end
--FLASK as a web framework
+Python for back end, HTML CSS for front end, FLASK as a web framework
 
 Description of the project:
 
