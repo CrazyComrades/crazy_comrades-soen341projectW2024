@@ -23,7 +23,7 @@ A car rental application is a software platform designed to facilitate the proce
 
 Core features of the project:
 
-Car rental website
+Car rental website. Make, edit or remove reservations. Car listings with photos
 
 Sprint 1
 
