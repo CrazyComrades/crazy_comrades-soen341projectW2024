@@ -34,6 +34,8 @@ Car rental website. Make, edit or remove reservations. Car listings with photos
 Team rules: 
 Each member of the team MUST contribute to the project at least 1 hour per day. All members must attend team meetings once planned. Always remember to press ccommit on github to save your work
 
+Car rental website, able to make, edit and remove reservations. The website will show car listings with pictures of the car.
+
 Sprint 1
 
 -Start a reservation
