@@ -28,10 +28,6 @@ A car rental application is a software platform designed to facilitate the proce
 -Car rental website<br> -Make, edit or remove reservations<br> -Car listings with photos<br>
 
 
-
-### Team rules: <br>
--Each member of the team MUST contribute to the project at least 1 hour per day. <br> -All members must attend team meetings once planned.<br> -Always remember to press commit on github to save your work<br>
-
 ### Sprint 1 <br>
 -Start a reservation <br>
 -View/Modify/Cancel a reservation <br>
