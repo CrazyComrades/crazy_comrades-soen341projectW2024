@@ -14,6 +14,19 @@ Assistant Front End: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
 Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
 Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
 
+### Detailed log of each team member's contribution: <br>
+Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task was <br> 
+Plans For The Next Sprint by Andrew Keleny. The time spent on this task was <br>
+README File by Ba Nam Nguyen and Steven Tran. The time spent on this task was <br> 
+Project Approach and Technology by Ba Nam Nguyen, Yazid Dawiss and Mohamed Mrizek. The time spent on this task was <br> 
+Meeting Minutes by Ba Nam Nguyen. The time spent on this task was <br> 
+Detailed log of each team member's contribution by David Girma. The time spent on this task was <br> 
+Project Description. The time spent on this task was <br> 
+Installation Instructions by David Girma. The time spent on this task was <br> 
+6 user stories backlog for sprint 1 by Steven Tran, Yazid Dawiss and Mohamed Mrizek. The time spent on this task was <br> 
+Website home page designing by Yazid Dawiss and Mohamed Mrizek. The time spent on this task was <br> 
+
+
 ### Languages & techniques we plan to use: <br>
 **HTML and Bootstrap** as front-end frameworks and **FLASK** as a back-end framework that uses Python as a programming language. <br>
 
@@ -22,6 +35,29 @@ Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
 A car rental application is a software platform designed to facilitate the process of renting vehicles for short periods, typically ranging from a few hours to a few weeks. The application serves as an interface between customers looking to rent vehicles and the car rental company offering those services. <br>
 
 ### Installation instructions: <br>
+1- Download Python and Visual Studio Code on your computer. <br>
+
+2- Install Python extensions on Visual Studio Code  <br>
+
+3- Install Python from the executable file and add Python to your PATH  <br>
+
+4- Access your windows computer’s advanced system settings by using search  <br>
+
+5- Click Environment Variables and search for Path among the user variable options  <br>
+
+6- Click Path to open a window allowing you to edit environment variables  <br>
+
+7- Make sure your Path is available among the options displayed  <br>
+
+8- Access your app execution aliases  <br>
+
+9- Check for the two Python execution aliases and turn them off  <br>
+
+10- From your command prompt or Visual Studio Code, type the following command: pip install flask  <br>
+
+11- Once Flask is installed, type: pip install flask-login  <br>
+
+12- Once this installation is complete, type: pip install flask-sqlalchemy <br>
 
 ### Core features of the project: <br>
 
