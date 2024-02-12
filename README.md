@@ -1,12 +1,12 @@
 # crazy_comrades-soen341projectW2024
 
 ### Team members + student ID: <br>
-Ba Nam Nguyen	  40163445	<br>
-Mohamed Mrizek	40234343	<br>	 
-Steven Tran	    40211695	<br> 	 
-Andrew Keleny  	40167162 <br>	 	 
-David Girma	    40208764	<br> 	 
-Yazid Dawiss	  40092814	<br>
+Ba Nam Nguyen	  40163445	         Github name: ElectricalEngineerStudent<br>
+Mohamed Mrizek	40234343	         Github name: Mrizek<br>	 
+Steven Tran	    40211695	         Github name: StevenTran18<br> 	 
+Andrew Keleny  	40167162           Github name: AndrewKeleny<br>	 	 
+David Girma	    40208764	         Github name: borealis8<br> 	 
+Yazid Dawiss	  40092814	         Github name: whoisyazzy<br>
 
 ### Roles of each member: <br>
 Front End Engineers: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
