@@ -1,31 +1,74 @@
 # crazy_comrades-soen341projectW2024
 
-Team members + student ID: 
-Ba Nam Nguyen	40163445	
-Mohamed Mrizek	40234343		 
-Steven Tran	40211695	 	 
-Andrew Keleny	40167162	 	 
-David Girma	40208764	 	 
-Yazid Dawiss	40092814	 
+### Team members + student ID: <br>
+Ba Nam Nguyen	  40163445	         Github name: ElectricalEngineerStudent<br>
+Mohamed Mrizek	40234343	         Github name: Mrizek<br>	 
+Steven Tran	    40211695	         Github name: StevenTran18<br> 	 
+Andrew Keleny  	40167162           Github name: AndrewKeleny<br>	 	 
+David Girma	    40208764	         Github name: borealis8<br> 	 
+Yazid Dawiss	  40092814	         Github name: whoisyazzy<br>
 
-Roles of each member:
-Front End Engineers: Yazid Dawiss, Mohamed Mrizek, Ba Nam Nguyen
-Assistant Front End:
-Back End Engineers:
-Assistant Back End: Yazid Dawiss, Mohamed Mrizek, Ba Nam Nguyen
+### Roles of each member: <br>
+Front End Engineers: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
+Assistant Front End: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
+Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
+Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
 
-Programming language chosen: Python for back end, HTML CSS for front end, FLASK as a web framework
+### Detailed log of each team member's contribution: <br>
+Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task: 30 min <br> 
+Plans For The Next Sprint by Andrew Keleny. The time spent on this task was: 1 hour <br>
+README File by Ba Nam Nguyen and Steven Tran. The time spent on this task: 4 hrs <br> 
+Project Approach and Technology by Ba Nam Nguyen, Yazid Dawiss and Mohamed Mrizek. The time spent on this task: 5 hrs <br> 
+Meeting Minutes by Ba Nam Nguyen. The time spent on this task: 1 hr <br> 
+Detailed log of each team member's contribution by David Girma. The time spent on this task was 25 minutes. <br> 
+Project Description. The time spent on this task was 20 min <br> 
+Installation Instructions by David Girma. The time spent on this task was 10 minutes. <br> 
+6 user stories backlog for sprint 1 by Steven Tran, Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 1 hour. <br> 
+Website home page designing by Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 30 min <br> 
 
-#Description of the project:
 
-A car rental application is a software platform designed to facilitate the process of renting vehicles for short periods, typically ranging from a few hours to a few weeks. The application serves as an interface between customers looking to rent vehicles and the car rental company offering those services.
+### Languages & techniques we plan to use: <br>
+**HTML and Bootstrap** as front-end frameworks and **FLASK** as a back-end framework that uses Python as a programming language. <br>
 
-#Core features of the project:
+### Description of the project:<br>
 
--Start a reservation
--View/Modify/Cancel a reservation
--Browse vehicles for rent
--CRUD operations on users
--CRUD operations on vehicles
--CRUD operations on reservations
+A car rental application is a software platform designed to facilitate the process of renting vehicles for short periods, typically ranging from a few hours to a few weeks. The application serves as an interface between customers looking to rent vehicles and the car rental company offering those services. <br>
+
+### Installation instructions: <br>
+1- Download Python and Visual Studio Code on your computer. <br>
+
+2- Install Python extensions on Visual Studio Code  <br>
+
+3- Install Python from the executable file and add Python to your PATH  <br>
+
+4- Access your windows computer’s advanced system settings by using search  <br>
+
+5- Click Environment Variables and search for Path among the user variable options  <br>
+
+6- Click Path to open a window allowing you to edit environment variables  <br>
+
+7- Make sure your Path is available among the options displayed  <br>
+
+8- Access your app execution aliases  <br>
+
+9- Check for the two Python execution aliases and turn them off  <br>
+
+10- From your command prompt or Visual Studio Code, type the following command: pip install flask  <br>
+
+11- Once Flask is installed, type: pip install flask-login  <br>
+
+12- Once this installation is complete, type: pip install flask-sqlalchemy <br>
+
+### Core features of the project: <br>
+
+-Car rental website<br> -Make, edit or remove reservations<br> -Car listings with photos<br>
+
+
+### Sprint 1 <br>
+-Start a reservation <br>
+-View/Modify/Cancel a reservation <br>
+-Browse vehicles for rent <br>
+-CRUD operations on users <br>
+-CRUD operations on vehicles <br>
+-CRUD operations on reservations <br>
 
