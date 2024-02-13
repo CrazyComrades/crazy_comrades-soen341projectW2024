@@ -1,6 +1,6 @@
 Attendees + Student ID:
 
-    Ba Nam Nguyen	40163445	
+Ba Nam Nguyen	40163445	
 Mohamed Mrizek	40234343	
 Steven Tran	40211695	
 Andrew Keleny	40167162		 
