@@ -15,16 +15,16 @@ Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
 Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
 
 ### Detailed log of each team member's contribution: <br>
-Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task: <br> 
+Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task: 30 min <br> 
 Plans For The Next Sprint by Andrew Keleny. The time spent on this task was: 1 hour <br>
 README File by Ba Nam Nguyen and Steven Tran. The time spent on this task: 4 hrs <br> 
 Project Approach and Technology by Ba Nam Nguyen, Yazid Dawiss and Mohamed Mrizek. The time spent on this task: 5 hrs <br> 
 Meeting Minutes by Ba Nam Nguyen. The time spent on this task: 1 hr <br> 
 Detailed log of each team member's contribution by David Girma. The time spent on this task was 25 minutes. <br> 
-Project Description. The time spent on this task was <br> 
+Project Description. The time spent on this task was 20 min <br> 
 Installation Instructions by David Girma. The time spent on this task was 10 minutes. <br> 
 6 user stories backlog for sprint 1 by Steven Tran, Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 1 hour. <br> 
-Website home page designing by Yazid Dawiss and Mohamed Mrizek. The time spent on this task was <br> 
+Website home page designing by Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 30 min <br> 
 
 
 ### Languages & techniques we plan to use: <br>
