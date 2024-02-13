@@ -1,0 +1,19 @@
+Attendees + Student ID:
+
+    Ba Nam Nguyen	40163445	
+Mohamed Mrizek	40234343	
+Steven Tran	40211695	
+Andrew Keleny	40167162		 
+David Girma	40208764	 	 
+Yazid Dawiss	40092814	 
+Meeting duration: 1 hr Meeting mode: in-person Meeting start time: 2:45pm
+
+Meeting details:
+
+Created team gmail and team Github. Familiarize with each team member Learning who's good at doing what. Vague idea of who will have what role in the team.
+
+Main points of the meeting:
+
+Discussed about which platform to use for Front End and Back End. Begin team role division.
+
+Next step: Learn how to use GitHub for projects, create required GitHub wiki page.

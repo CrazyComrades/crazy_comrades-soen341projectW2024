@@ -1,0 +1,17 @@
+Attendees + Student ID:
+
+Ba Nam Nguyen	40163445	
+Mohamed Mrizek	40234343	
+Steven Tran	40211695	
+Andrew Keleny	40167162		 
+David Girma	40208764	 	 
+Yazid Dawiss	40092814	 
+Meeting duration: 2 hr
+
+Meeting details:
+
+Begin sprint 1 Learn how to do a web app using git Learn how to make a car rental using Youtube Get Familiar with React Get Familiar with Javascript Understand Git and how to use it Create the wiki and subfolders Brainstorm
+
+Main points of the meeting: Start Sprint 1. Learn how to officially set up and put the team GitHub in the correct format. Start making the team's wiki page and update the Read me page so that it meets the sprint 1 requirement.
+
+Next step: Prepare for demo, finalize Github page for demo.

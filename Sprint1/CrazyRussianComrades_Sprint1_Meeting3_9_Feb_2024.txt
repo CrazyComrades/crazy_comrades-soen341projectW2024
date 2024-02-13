@@ -1,0 +1,15 @@
+Attendees + Student ID:
+
+Ba Nam Nguyen	40163445	
+Mohamed Mrizek	40234343	
+Steven Tran	40211695	
+Andrew Keleny	40167162		 
+David Girma	40208764	 	 
+Yazid Dawiss	40092814	 
+Meeting duration: 2 hr
+
+Meeting Details:
+
+Demo the team GitHub to TA the Sprint 1. Continue working on and finalize the Team GitHub wiki page and repositories.
+
+Next step: Finalize Github page for Sprint 1 submission
