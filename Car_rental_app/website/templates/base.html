@@ -59,44 +59,22 @@
 <!-- Reservation form -->
 <div class="container mt-5">
     <h2>Start a Reservation</h2>
-    <form id="reservationForm">
+    <form action="reservation_endpoint.php" method="POST">
         <div class="form-group">
             <label for="location">Location (Postal Code, City, or Airport):</label>
-            <input type="text" class="form-control" id="location" required>
+            <input type="text" class="form-control" id="location" name="location" required>
         </div>
         <div class="form-group">
             <label for="pickupDate">Pickup Date:</label>
-            <input type="date" class="form-control" id="pickupDate" required>
+            <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
         </div>
         <div class="form-group">
             <label for="returnDate">Return Date:</label>
-            <input type="date" class="form-control" id="returnDate" required>
+            <input type="date" class="form-control" id="returnDate" name="returnDate" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
-<!-- jQuery Slim, Popper.js, Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<!-- JavaScript code for handling reservation form submission -->
-<script>
-    $(document).ready(function() {
-        $('#reservationForm').submit(function(event) {
-            event.preventDefault(); // Prevent form submission
-            // Gather form data
-            var location = $('#location').val();
-            var pickupDate = $('#pickupDate').val();
-            var returnDate = $('#returnDate').val();
-            // process this data, send it to the backend via AJAX
-            console.log("Location:", location);
-            console.log("Pickup Date:", pickupDate);
-            console.log("Return Date:", returnDate);
-            // HERE, add code to send this data to the backend for processing
-        });
-    });
-</script>
 </body>
 </html>
