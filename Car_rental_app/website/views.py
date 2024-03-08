@@ -9,3 +9,7 @@ def home():
 @views.route('/reservations')
 def reservation():
     return render_template("base.html")    
+
+@views.route('/browse')
+def browse():
+    return render_template("browse.html")   
