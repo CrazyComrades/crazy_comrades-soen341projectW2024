@@ -19,7 +19,6 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
-                login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
@@ -54,7 +53,7 @@ def sign_up():
             flash('Password must be at least 7 characters.', category='error')
         else:
             new_user = User(email=email, name=name, password=generate_password_hash(
-                password))
+                password), role = 'user')
             db.session.add(new_user)
             db.session.commit()
             
