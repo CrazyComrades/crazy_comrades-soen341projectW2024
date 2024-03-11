@@ -32,7 +32,7 @@ Acceptance tests written by Steven Tran. The time spent on this task was 5 hours
 Continuous Integration Pipeline written by Yazid Dawiss, Mohamed Mrizek and Andrew Keleny. The time spent on this task was 6 hours. Steven Tran worked on this task during the 8th, 9th and 10th of March 2024 <br> 
 Sprint Planning for Sprint 3 written by Andrew Keleny. The time spent on this task was 1 hour 45 minutes. Andrew Keleny worked on this task during the 1st and 9th of March 2024  <br>
 Meeting Minutes organized by Ba Nam Nguyen. The time spent on this task: 2 hours. Ba Nam Nguyen worked on this during the 26th of February and the 8th of March 2024 <br>
-Detailed log of Each Team Member's Contribution written by David Girma. The time spent on this task was 45 minutes. David Girma worked on this task during the 10th of March 2024 <br>
+Detailed log of Each Team Member's Contribution written by David Girma. The time spent on this task was 1 hour. David Girma worked on this task during the 10th of March 2024 <br>
 Project management organized by Mohamed Mrizek and Ba Nam Nguyen. The time spent on this task was 2 hours. Mohamed Mrizek and Ba Nam Nguyen worked on this task during the 26th of February and 8th of March 2024 <br>
 Implementation of a webpage to start a reservation programmed by Mohamed Mrizek. The time spent on this task was 7 hours. Mohamed Mrizek worked on this task during the 26th, 27th and 28th of February 2024. <br>
 Implementation of reservation viewing and editing programmed by Mohamed Mrizek and Yazid Dawiss. The time spent on this task was 5 hours. Mohamed Mrizek and Yazid Dawiss worked on this task during the 8th, 9th and 10th of March 2024 <br>
