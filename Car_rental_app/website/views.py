@@ -6,10 +6,15 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html")
     
-@views.route('/reservations')
+@views.route('/reservation')
 def reservation():
-    return render_template("base.html")    
+    return render_template("reservation.html")    
+
+
+@views.route('/admin')
+def admin():
+    return render_template("admin.html")    
 
 @views.route('/browse')
 def browse():
-    return render_template("browse.html")   
+    return render_template("browse.html")    
