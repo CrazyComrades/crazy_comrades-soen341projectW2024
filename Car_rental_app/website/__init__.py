@@ -7,7 +7,7 @@ from flask_admin import Admin
 db = SQLAlchemy()
 admin = Admin()
 DB_NAME = "database.db"
-
+login_manager = LoginManager()
 
 
 
@@ -28,15 +28,9 @@ def create_app():
     
     create_database(app)
 
-    login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(int(id))
-
-    
 
     return app
 

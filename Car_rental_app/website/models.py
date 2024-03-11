@@ -1,6 +1,6 @@
 from sqlalchemy import func
 from . import db, admin
-from flask_login import UserMixin
+from flask_login import UserMixin, LoginManager, current_user
 from flask_admin.contrib.sqla import ModelView
 
 class User(db.Model, UserMixin):
@@ -9,9 +9,22 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     role = db.Column(db.String(150))
-    reservations = db.relationship('Reservation')
+    reservation = db.relationship("Reservation", back_populates="user")
+    def __str__(self):
+        return self.name
+        
     
-admin.add_view(ModelView(User, db.session))
+class Reservation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    checkin = db.Column(db.DateTime(timezone=True), default=func.now())
+    checkout = db.Column(db.DateTime(timezone=True), default=func.now())
+    final_price = db.Column(db.Float)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Specify foreign key relationship
+    user = db.relationship("User", back_populates="reservation")
+    vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
+    vehicle_price = db.Column(db.Float)
+    vehicle_avail = db.Column(db.Integer)
+
 
 class Vehicle(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,16 +36,21 @@ class Vehicle(db.Model):
     mileage = db.Column(db.Integer)
     availability = db.Column (db.Boolean)
 
+class ReservationView(ModelView):
+    form_columns = ["checkin", "checkout", "final_price", "user", "vehicle_id", "vehicle_price", "vehicle_avail"]
+
+class Controller(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+        
+admin.add_view(Controller(User, db.session))
+admin.add_view(ReservationView(Reservation, db.session))
+admin.add_view(ModelView(Vehicle, db.session))
+
+
+
+
     
-class Reservation(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    checkin = db.Column(db.DateTime(timezone=True), default=func.now())
-    checkout = db.Column(db.DateTime(timezone=True), default=func.now())
-    final_price = db.Column(db.Double)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
-    vehicle_price = db.Column(db.Integer, db.ForeignKey('vehicle.price'))
-    vehicle_avail = db.Column(db.Integer, db.ForeignKey('vehicle.availability'))
 
 
 
