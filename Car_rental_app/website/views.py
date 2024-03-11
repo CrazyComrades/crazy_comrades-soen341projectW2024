@@ -11,9 +11,9 @@ def reservation():
     return render_template("reservation.html")    
 
 
-@views.route('/admin')
+@views.route('/admin1')
 def admin():
-    return render_template("admin.html")    
+    return render_template("admin1.html")    
 
 @views.route('/browse')
 def browse():

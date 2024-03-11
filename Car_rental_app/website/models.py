@@ -1,6 +1,7 @@
 from sqlalchemy import func
-from . import db
+from . import db, admin
 from flask_login import UserMixin
+from flask_admin.contrib.sqla import ModelView
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +11,7 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(150))
     reservations = db.relationship('Reservation')
     
+admin.add_view(ModelView(User, db.session))
 
 class Vehicle(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
