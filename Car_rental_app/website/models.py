@@ -2,6 +2,7 @@ from sqlalchemy import func
 from . import db, admin
 from flask_login import UserMixin, LoginManager, current_user
 from flask_admin.contrib.sqla import ModelView
+from flask import redirect, url_for
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,8 +42,11 @@ class ReservationView(ModelView):
 
 class Controller(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated
-        
+        return current_user.is_authenticated and current_user.role == 'admin'
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('auth.login'))
+
 admin.add_view(Controller(User, db.session))
 admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(ModelView(Vehicle, db.session))
