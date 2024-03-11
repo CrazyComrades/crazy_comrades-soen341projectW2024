@@ -14,17 +14,29 @@ Assistant Front End: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
 Back End Engineers: Ba Nam Nguyen, Steven Tran, Andrew Keleny <br>
 Assistant Back End: Yazid Dawiss, Mohamed Mrizek, David Girma <br>
 
-### Detailed log of each team member's contribution: <br>
-Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task: 30 min <br> 
-Plans For The Next Sprint by Andrew Keleny. The time spent on this task was: 1 hour <br>
-README File by Ba Nam Nguyen and Steven Tran. The time spent on this task: 4 hrs <br> 
-Project Approach and Technology by Ba Nam Nguyen, Yazid Dawiss and Mohamed Mrizek. The time spent on this task: 5 hrs <br> 
-Meeting Minutes by Ba Nam Nguyen. The time spent on this task: 1 hr <br> 
+### Detailed log of each team member's contribution in sprint1: <br>
+Task breakdown by Mohamed Mrizek and Steven Tran. The time spent on this task: 30 minutes. <br> 
+Plans For The Next Sprint by Andrew Keleny. The time spent on this task was: 1 hour. <br>
+README File by Ba Nam Nguyen and Steven Tran. The time spent on this task: 4 hours. <br> 
+Project Approach and Technology by Ba Nam Nguyen, Yazid Dawiss and Mohamed Mrizek. The time spent on this task: 5 hours. <br> 
+Meeting Minutes by Ba Nam Nguyen. The time spent on this task: 1 hour. <br> 
 Detailed log of each team member's contribution by David Girma. The time spent on this task was 25 minutes. <br> 
 Project Description. The time spent on this task was 20 min <br> 
 Installation Instructions by David Girma. The time spent on this task was 10 minutes. <br> 
 6 user stories backlog for sprint 1 by Steven Tran, Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 1 hour. <br> 
 Website home page designing by Yazid Dawiss and Mohamed Mrizek. The time spent on this task was 30 min <br> 
+
+### Detailed log of each team member's contribution in sprint2: <br>
+
+Acceptance tests written by Steven Tran. The time spent on this task was 4 hours. <br>
+Continuous Integration Pipeline written by Yazid Dawiss, Mohamed Mrizek and Andrew Keleny. The time spent on this task was 4 hours. <br> 
+Sprint Planning for Sprint 3 written by Andrew Keleny. The time spent on this task was 1 hour 45 minutes. <br>
+Meeting Minutes organized by Ba Nam Nguyen. The time spent on this task: 2 hours <br>
+Detailed log of Each Team Member's Contribution written by David Girma. The time spent on this task was 45 minutes. <br>
+Project management organized by Mohamed Mrizek and Ba Nam Nguyen. The time spent on this task was 2 hours. <br>
+Implementation of a webpage to start a reservation programmed by Mohamed Mrizek. The time spent on this task was 5 hours. <br>
+Implementation of reservation viewing and editing programmed by. The time spent on this task was 4 hours 30 minutes. <br>
+Video walkthrough of our website core functions recorded and presented by Mohamed Mrizek. The time spent on this task was 1 hour. <br>
 
 
 ### Languages & techniques we plan to use: <br>
