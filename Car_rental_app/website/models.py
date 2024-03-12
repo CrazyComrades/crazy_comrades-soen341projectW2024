@@ -20,6 +20,7 @@ class Reservation(db.Model):
     checkin = db.Column(db.DateTime(timezone=True), default=func.now())
     checkout = db.Column(db.DateTime(timezone=True), default=func.now())
     final_price = db.Column(db.Float)
+    location = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Specify foreign key relationship
     user = db.relationship("User", back_populates="reservation")
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
