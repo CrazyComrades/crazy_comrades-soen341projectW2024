@@ -59,7 +59,7 @@ class VehicleView(ModelView):
         return redirect(url_for('auth.login'))
 
 admin.add_view(Controller(User, db.session))
-admin.add_view((Reservation, db.session))
+admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(VehicleView(Vehicle, db.session))
 
 
