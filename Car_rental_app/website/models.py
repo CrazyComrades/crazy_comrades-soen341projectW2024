@@ -42,7 +42,7 @@ class ReservationView(ModelView):
 
 class Controller(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated and current_user.role == 'admin'
+        return current_user.is_authenticated and current_user.role == 'Admin'
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth.login'))
