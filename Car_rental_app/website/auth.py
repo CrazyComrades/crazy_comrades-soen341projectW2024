@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import db, LoginManager   ##means from __init__.py import db
+from . import db, login_manager   ##means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
 
 
 auth = Blueprint('auth', __name__)
-
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -17,7 +19,8 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password, password):
+            if (user.password == password):
+                login_user(user)
                 flash('Logged in successfully!', category='success')
                 return redirect(url_for('views.home'))
             else:
@@ -52,12 +55,13 @@ def sign_up():
         elif len(password) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, name=name, password=generate_password_hash(
-                password), role = 'user')
+            new_user = User(email=email, name=name, password=
+                password, role = 'user')
             db.session.add(new_user)
             db.session.commit()
             
             flash('Account created!', category='success')
+            login_user(new_user)
             
             return redirect(url_for('views.home'))
     
