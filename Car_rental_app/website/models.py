@@ -39,6 +39,10 @@ class Vehicle(db.Model):
 
 class ReservationView(ModelView):
     form_columns = ["checkin", "checkout", "final_price", "user", "vehicle_id", "vehicle_price", "vehicle_avail"]
+    def is_accessible(self):
+        return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('auth.login'))
 
 class Controller(ModelView):
     def is_accessible(self):
@@ -46,10 +50,16 @@ class Controller(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth.login'))
+class VehicleView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('auth.login'))
 
 admin.add_view(Controller(User, db.session))
-admin.add_view(ReservationView(Reservation, db.session))
-admin.add_view(ModelView(Vehicle, db.session))
+admin.add_view((Reservation, db.session))
+admin.add_view(VehicleView(Vehicle, db.session))
 
 
 
