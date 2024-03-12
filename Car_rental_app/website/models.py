@@ -29,6 +29,7 @@ class Reservation(db.Model):
     checkin = db.Column(db.DateTime(timezone=True), default=func.now())
     checkout = db.Column(db.DateTime(timezone=True), default=func.now())
     final_price = db.Column(db.Double)
+    location = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
     vehicle_price = db.Column(db.Integer, db.ForeignKey('vehicle.price'))
