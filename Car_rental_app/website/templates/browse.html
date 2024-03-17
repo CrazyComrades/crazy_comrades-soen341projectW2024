@@ -9,10 +9,21 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS (for icons) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
     <style>
-        /* Add custom styles here if needed */
+         .vehicle-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;}
+            img {
+            width: 300px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        
     </style>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -53,49 +64,29 @@
 </nav>
 <body>
     <div class="container">
-        <h1 class="mt-5 mb-4">Available Cars for Rent</h1>
+        <div style="text-align: center;">
+            <h1 class="mt-5 mb-4" style="margin: 0 auto;">Available Vehicles</h1>
+        </div>
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://cdn.jdpower.com/Average%20Weight%20Of%20A%20Car.jpg" class="card-img-top" alt="Car 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Car 1</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Rental Price: $50/day</p>
-                        <a href="#" class="btn btn-primary">Rent Now</a>
+            {% for vehicle in vehicles %}
+            <div class="col-md-4">
+                <div class="vehicle-card">
+                    <div style="text-align: center;"> 
+                        <h5>{{ vehicle.type_car }}</h5>
                     </div>
+                    <img src="{{ url_for('views.car_images', filename=vehicle.image) }}" alt="Vehicle Image">
+                    <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
+                    <p><strong>Model:</strong> {{ vehicle.car_model }}</p>
+                    <p><strong>Year:</strong> {{ vehicle.year }}</p>
+                    <p><strong>Price:</strong> ${{ vehicle.price }}</p>
+                    <p><strong>Mileage:</strong> {{ vehicle.mileage }}</p>
+                    <p><strong>Availability:</strong> {% if vehicle.availability %}Available{% else %}Not Available{% endif %}</p>
+                    <a href="{{ url_for('views.reservation') }}" class="btn btn-primary">Rent Now</a>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="Car 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Car 2</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Rental Price: $60/day</p>
-                        <a href="#" class="btn btn-primary">Rent Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="https://media.istockphoto.com/id/1189903200/photo/red-generic-sedan-car-isolated-on-white-background-3d-illustration.jpg?s=612x612&w=0&k=20&c=uRu3o_h5FVljLQHS9z0oyz-XjXzzXN_YkyGXwhdMrjs=" class="card-img-top" alt="Car 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Car 3</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Rental Price: $70/day</p>
-                        <a href="#" class="btn btn-primary">Rent Now</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more cards for additional cars as needed -->
+            {% endfor %}
         </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

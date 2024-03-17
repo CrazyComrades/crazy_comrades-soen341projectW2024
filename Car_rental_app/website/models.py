@@ -3,6 +3,10 @@ from . import db, admin
 from flask_login import UserMixin, LoginManager, current_user
 from flask_admin.contrib.sqla import ModelView
 from flask import redirect, url_for
+from flask_admin.form.upload import FileUploadField
+from wtforms.fields import FileField
+from wtforms.validators import DataRequired
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,6 +30,7 @@ class Reservation(db.Model):
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Integer)
+    
 
 
 class Vehicle(db.Model): 
@@ -37,6 +42,7 @@ class Vehicle(db.Model):
     price = db.Column(db.Double)
     mileage = db.Column(db.Integer)
     availability = db.Column (db.Boolean)
+    image = db.Column(db.String(255))
 
 class ReservationView(ModelView):
     form_columns = ["checkin", "checkout", "final_price", "user", "vehicle_id", "vehicle_price", "vehicle_avail"]
@@ -53,7 +59,18 @@ class Controller(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('auth.login'))
+
 class VehicleView(ModelView):
+    form_extra_fields = {
+        'image': FileUploadField(
+            label='Image',
+            base_path='C:/Users/dawis/crazy_comrades-soen341projectW2024/Car_rental_app/website/car_images/Car_rental_app/website',
+            relative_path='Car_rental_app/website/car_images/Car_rental_app/website',
+            validators=[DataRequired()],
+            allowed_extensions=['jpg', 'png']
+        )
+    }
+
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')
 

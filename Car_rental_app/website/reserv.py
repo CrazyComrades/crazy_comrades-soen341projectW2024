@@ -25,3 +25,4 @@ def submit_reservation():
 def success():
     flash ("Reservation submitted successfully!")
     return render_template("home.html")
+
