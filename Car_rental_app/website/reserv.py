@@ -14,7 +14,8 @@ def submit_reservation():
     checkin = datetime.strptime(checkin_str, '%Y-%m-%d')
     checkout = datetime.strptime(checkout_str, '%Y-%m-%d')
   
-    new_reservation = Reservation(location=location, checkin=checkin, checkout=checkout, user_id =user_id)
+    
+    new_reservation = Reservation(location=location, checkin=checkin, checkout=checkout, user_id =user_id,vehicle_id=vehicle_id)
    
     db.session.add(new_reservation)
     db.session.commit()

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,request
 from .models import Vehicle
 from flask import send_from_directory
 
@@ -8,9 +8,11 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html")
     
-@views.route('/reservation')
+@views.route('/reservation', methods=['GET'])
 def reservation():
-    return render_template("reservation.html")    
+    vehicle_id = request.args.get('vehicle_id')
+    user_id = request.args.get('user_id')
+    return render_template("reservation.html",vehicle_id=vehicle_id,user_id = user_id)    
 
 
 @views.route('/admin1')

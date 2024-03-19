@@ -81,7 +81,9 @@
                     <p><strong>Price:</strong> ${{ vehicle.price }}</p>
                     <p><strong>Mileage:</strong> {{ vehicle.mileage }}</p>
                     <p><strong>Availability:</strong> {% if vehicle.availability %}Available{% else %}Not Available{% endif %}</p>
-                    <a href="{{ url_for('views.reservation') }}" class="btn btn-primary">Rent Now</a>
+                    <a href="{{ url_for('views.reservation', vehicle_id=vehicle.id, user_id=current_user.id) }}" class="btn btn-primary">Rent Now</a>
+
+
                 </div>
             </div>
             {% endfor %}
