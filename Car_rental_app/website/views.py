@@ -15,9 +15,9 @@ def reservation():
     return render_template("reservation.html",vehicle_id=vehicle_id,user_id = user_id)    
 
 
-@views.route('/admin1')
+@views.route('/admin')
 def admin():
-    return render_template("admin1.html")    
+    return render_template("admin.html")    
 
 @views.route('/browse')
 def vehicles():
