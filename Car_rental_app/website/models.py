@@ -70,6 +70,7 @@ class VehicleView(ModelView):
             allowed_extensions=['jpg', 'png']
         )
     }
+    
 
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')

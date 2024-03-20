@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_admin import Admin
 
 db = SQLAlchemy()
-admin = Admin()
+admin = Admin(name='My Admin Panel', template_mode='bootstrap4')
 DB_NAME = "database.db"
 login_manager = LoginManager()
 
@@ -17,6 +17,8 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     admin.init_app(app)
+
+    
 
     from .views import views
     from .auth import auth
