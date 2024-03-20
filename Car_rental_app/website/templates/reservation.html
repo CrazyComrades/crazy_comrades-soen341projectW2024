@@ -87,6 +87,8 @@
             <label for="checkout">Return Date:</label>
             <input type="date" class="form-control" id="checkout" name="checkout" required>
         </div>
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+        <input type="hidden" name="vehicle_id" value="{{ vehicle_id }}">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
