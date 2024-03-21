@@ -19,6 +19,10 @@ def reservation():
 def admin():
     return render_template("admin.html")    
 
+@views.route('/myreservation')
+def myres():
+    return render_template("myres.html")
+
 @views.route('/browse')
 def vehicles():
     vehicles = Vehicle.query.all()
