@@ -22,12 +22,12 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['MAIL_SERVER'] = 'smtp.example.com'
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'your-email@example.com'
-    app.config['MAIL_PASSWORD'] = 'your-email-password'
-    
+    app.config['MAIL_USERNAME'] = 'crazycomradessoen@gmail.com'
+    app.config['MAIL_PASSWORD'] = '2024_SOEN@341!'
+
     db.init_app(app)
     admin.init_app(app)
     mail = Mail(app)
