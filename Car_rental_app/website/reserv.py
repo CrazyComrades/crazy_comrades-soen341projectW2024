@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import Reservation
+from .models import Reservation, Vehicle
 from . import db
 
 res = Blueprint('res', __name__)
@@ -14,10 +14,14 @@ def submit_reservation():
     checkin = datetime.strptime(checkin_str, '%Y-%m-%d')
     checkout = datetime.strptime(checkout_str, '%Y-%m-%d')
     vehicle_id = request.form['vehicle_id']
-   
-  
     
-    new_reservation = Reservation(location=location, checkin=checkin, checkout=checkout, vehicle_id=vehicle_id,user_id=user_id)
+    vehicle = Vehicle.query.get_or_404(vehicle_id)
+
+    duration = (checkout - checkin).days
+    vehicle_price = float(vehicle.price)
+    total_price = duration * vehicle_price
+    
+    new_reservation = Reservation(location=location, checkin=checkin, checkout=checkout, vehicle_id=vehicle_id,user_id=user_id,vehicle_price=vehicle.price, final_price=total_price)
    
     db.session.add(new_reservation)
     db.session.commit()

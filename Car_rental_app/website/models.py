@@ -32,7 +32,7 @@ class Reservation(db.Model):
     user = db.relationship("User", back_populates="reservation")
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
     vehicle_price = db.Column(db.Float)
-    vehicle_avail = db.Column(db.Integer)
+    vehicle_avail = db.Column(db.Boolean)
     
 
 
@@ -42,7 +42,7 @@ class Vehicle(db.Model):
     brand = db.Column(db.String(150))
     car_model = db.Column(db.String(150))
     year = db.Column(db.Integer)
-    price = db.Column(db.Double)
+    price = db.Column(db.Float)
     mileage = db.Column(db.Integer)
     availability = db.Column (db.Boolean)
     image = db.Column(db.String(255))
