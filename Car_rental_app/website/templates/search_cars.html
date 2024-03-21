@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Cars</title>
+</head>
+<body>
+    <h1>Search Cars</h1>
+    <form action="/search_cars" method="GET">
+        <label for="branch_id">Branch ID:</label>
+        <input type="text" id="branch_id" name="branch_id" required>
+        <label for="car_type">Car Type:</label>
+        <input type="text" id="car_type" name="car_type" required>
+        <!-- Add additional search criteria fields as needed -->
+        <button type="submit">Search Cars</button>
+    </form>
+    <div id="search_results"></div>
+
+    <script>
+        // Example JavaScript to handle form submission and display results
+        document.querySelector('form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const branchId = document.getElementById('branch_id').value;
+            const carType = document.getElementById('car_type').value;
+            // Add logic to handle additional search criteria if needed
+
+            const response = await fetch(`/search_cars?branch_id=${branchId}&car_type=${carType}`);
+            const data = await response.json();
+            const searchResults = document.getElementById('search_results');
+            searchResults.innerHTML = ''; // Clear previous results
+            data.forEach(car => {
+                searchResults.innerHTML += `<p>Car ID: ${car.id}, Type: ${car.type_car}, Brand: ${car.brand}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
