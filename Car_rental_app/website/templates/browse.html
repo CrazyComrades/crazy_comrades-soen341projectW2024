@@ -82,7 +82,7 @@
                     <div style="text-align: center;"> 
                         <h5>{{ vehicle.type_car }}</h5>
                     </div>
-                    <img src="{{ url_for('views.car_images', filename=vehicle.image) }}" alt="Vehicle Image">
+                    <img src="{{ vehicle.image }}" class="card-img-top" alt="Car Image">
                     <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
                     <p><strong>Model:</strong> {{ vehicle.car_model }}</p>
                     <p><strong>Year:</strong> {{ vehicle.year }}</p>
