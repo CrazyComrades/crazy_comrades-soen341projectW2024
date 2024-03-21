@@ -20,8 +20,8 @@
             padding: 15px;
             margin-bottom: 20px;}
             img {
-            width: 300px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
+            width: 300px; 
+            height: auto; 
         }
         
     </style>
@@ -88,10 +88,14 @@
                     <p><strong>Year:</strong> {{ vehicle.year }}</p>
                     <p><strong>Price:</strong> ${{ vehicle.price }}</p>
                     <p><strong>Mileage:</strong> {{ vehicle.mileage }}</p>
-                    <p><strong>Availability:</strong> {% if vehicle.availability %}Available{% else %}Not Available{% endif %}</p>
+                    <p><strong>Current Availability:</strong> {% if vehicle.availability %}Available{% else %}Not Available{% endif %}</p>
+                    
+                    {% if current_user.is_authenticated %}
                     <a href="{{ url_for('views.reservation', vehicle_id=vehicle.id, user_id=current_user.id) }}" class="btn btn-primary">Rent Now</a>
-
-
+                    {% else %}
+                    <p>You need to be logged in to rent a vehicle.</p>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
