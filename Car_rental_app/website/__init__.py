@@ -1,11 +1,17 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from flask_admin import Admin
+from flask_admin.menu import MenuLink
+
+class MainIndexLink(MenuLink):
+    def get_url(self):
+        return url_for("views.home")
 
 db = SQLAlchemy()
 admin = Admin(name='My Admin Panel', template_mode='bootstrap4')
+admin.add_link(MainIndexLink(name="Get Back to the Main Site"))
 DB_NAME = "database.db"
 login_manager = LoginManager()
 
@@ -34,6 +40,8 @@ def create_app():
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+
+    
 
 
     return app

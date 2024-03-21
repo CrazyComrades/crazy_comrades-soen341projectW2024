@@ -2,10 +2,13 @@ from sqlalchemy import func
 from . import db, admin
 from flask_login import UserMixin, LoginManager, current_user
 from flask_admin.contrib.sqla import ModelView
-from flask import redirect, url_for
+from flask import redirect, url_for, current_app
 from flask_admin.form.upload import FileUploadField
 from wtforms.fields import FileField
 from wtforms.validators import DataRequired
+
+
+
 
 
 class User(db.Model, UserMixin):
@@ -81,6 +84,8 @@ class VehicleView(ModelView):
 admin.add_view(Controller(User, db.session))
 admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(VehicleView(Vehicle, db.session))
+
+
 
 
 
