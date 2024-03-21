@@ -34,7 +34,13 @@ class Reservation(db.Model):
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Boolean)
     
-
+class Branch(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String(150), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    contact = db.Column(db.String(100), nullable=False)
+    # Define backref in the Branch class
+    vehicles = db.relationship('Vehicle', backref='branch_ref', lazy=True)
 
 class Vehicle(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
@@ -44,8 +50,13 @@ class Vehicle(db.Model):
     year = db.Column(db.Integer)
     price = db.Column(db.Float)
     mileage = db.Column(db.Integer)
-    availability = db.Column (db.Boolean)
+    availability = db.Column(db.Boolean)
     image = db.Column(db.String(255))
+    branch_id = db.Column(db.Integer, db.ForeignKey('branch.id'))
+   
+
+
+
 
 class ReservationView(ModelView):
     form_columns = ["checkin", "checkout", "final_price", "user", "vehicle_id", "vehicle_price", "vehicle_avail"]
