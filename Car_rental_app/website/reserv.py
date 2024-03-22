@@ -33,3 +33,7 @@ def success():
     flash ("Reservation submitted successfully!")
     return render_template("home.html")
 
+@res.route('/process_payment', methods=['POST'])
+def process_payment():
+    # Payment processing logic
+    return 'Payment processed successfully'
