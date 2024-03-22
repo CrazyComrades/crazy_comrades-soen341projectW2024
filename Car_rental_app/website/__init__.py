@@ -15,23 +15,24 @@ admin = Admin(name='My Admin Panel', template_mode='bootstrap4')
 admin.add_link(MainIndexLink(name="Get Back to the Main Site"))
 DB_NAME = "database.db"
 login_manager = LoginManager()
-
+mail = Mail()
 
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['MAIL_SERVER'] = 'smtp.example.com'
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'your-email@example.com'
-    app.config['MAIL_PASSWORD'] = 'your-email-password'
-    
+    app.config['MAIL_USERNAME'] = 'crazycomradessoen@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'dzly lcrz qcdb ftol'
+    app.config['MAIL_DEFAULT_SENDER'] = 'crazycomradessoen@gmail.com'
+
     db.init_app(app)
     admin.init_app(app)
-    mail = Mail(app)
-    app.extensions['mail'] = mail
+    mail.init_app(app)
+    
 
     
 

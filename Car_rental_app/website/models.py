@@ -29,10 +29,11 @@ class Reservation(db.Model):
     final_price = db.Column(db.Float)
     location = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Specify foreign key relationship
-    user = db.relationship("User", back_populates="reservation")
+    user = db.relationship("User", back_populates="reservation", foreign_keys=[user_id])
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Boolean)
+    email_res = db.Column(db.String(150))
     
 class Branch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
