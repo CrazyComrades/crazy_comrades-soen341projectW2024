@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User, Reservation
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, login_manager   ##means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -66,3 +66,9 @@ def sign_up():
             return redirect(url_for('views.home'))
     
     return render_template("register.html", user=current_user)
+@auth.route('/my_reservations')
+@login_required
+def my_reservations():
+    # Query reservations associated with the current user
+    reservations = Reservation.query.filter_by(user=current_user).all()
+    return render_template('myres.html', reservations=reservations)

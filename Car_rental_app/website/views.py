@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Optional
 from sqlalchemy import or_
+from flask_login import current_user, login_required
 
 
 views = Blueprint('views', __name__)
@@ -77,9 +78,9 @@ def resforclient():
 def admin():
     return admin.index()
 
-@views.route('/myreservation')
-def myres():
-    return render_template("myres.html")
+
+
+
 
 @views.route('/browse')
 def vehicles():
