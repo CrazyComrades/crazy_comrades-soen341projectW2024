@@ -32,10 +32,11 @@ def submit_reservation():
    
     db.session.add(new_reservation)
     db.session.commit()
-    if process_payment(request.form):
-        send_confirmation_email(new_reservation)
-    else:
-        flash('Please Try Again. The payment was unsuccessful.')
+    send_confirmation_email(new_reservation)
+    # process_payment(request.form):
+     #   send_confirmation_email(new_reservation)
+    #else:
+     #   flash('Please Try Again. The payment was unsuccessful.')
         
     
     
