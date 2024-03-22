@@ -106,4 +106,9 @@ A car rental application is a software platform designed to facilitate the proce
 - video link: https://www.youtube.com/watch?v=JdaUDUa7Tpg <br>
 
 ### Sprint 3 <br>
+-Find a branch <br>
+-Check-in Process <br>
+-Check-out Process <br>
+
+
  
