@@ -1,49 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cars Available</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <div class="row">
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Cars Available at {{ branch.location }}</h1>
+  <form method="post">
+    {{ form.csrf_token }}
+    <div class="form-row">
       <div class="col">
-        {% block content %}
-        <h1 class="mt-4 mb-4">Cars Available at {{ branch.location }}</h1>
-        {% if cars %}
-        <div class="row">
-          {% for car in cars %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src="{{ car.image }}" class="card-img-top" alt="Car Image">
-              <div class="card-body">
-                <h5 class="card-title">{{ car.brand }} {{ car.car_model }}</h5>
-                <p class="card-text">Type: {{ car.type_car }}</p>
-                <p class="card-text">Year: {{ car.year }}</p>
-                <p class="card-text">Price: ${{ car.price }}</p>
-                <p class="card-text">Mileage: {{ car.mileage }}</p>
-                {% if car.availability %}
-                <p class="text-success">Available</p>
-                {% else %}
-                <p class="text-danger">Not Available</p>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        <p>No cars available at the moment.</p>
-        {% endif %}
-        {% endblock %}
+        {{ form.type_car.label }} {{ form.type_car(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.brand.label }} {{ form.brand(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.car_model.label }} {{ form.car_model(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.year.label }} {{ form.year(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.price.label }} {{ form.price(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.mileage.label }} {{ form.mileage(class="form-control") }}
+      </div>
+      <div class="col">
+        {{ form.availability.label }} {{ form.availability(class="form-check-input") }}
+      </div>
+      <div class="col">
+        {{ form.submit(class="btn btn-primary") }}
       </div>
     </div>
+  </form>
+
+  <div class="container mt-4">
+    <div class="row">
+      {% for car in cars %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ car.image }}" class="card-img-top" alt="Car Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ car.brand }} {{ car.car_model }}</h5>
+              <p class="card-text">Type: {{ car.type_car }}</p>
+              <p class="card-text">Year: {{ car.year }}</p>
+              <p class="card-text">Price: ${{ car.price }}</p>
+              <p class="card-text">Mileage: {{ car.mileage }}</p>
+              {% if car.availability %}
+                <p class="text-success">Available</p>
+              {% else %}
+                <p class="text-danger">Not Available</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
-  
-  <!-- Bootstrap JS (optional, only if you need Bootstrap JavaScript features) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -42,6 +42,8 @@ class Branch(db.Model):
     contact = db.Column(db.String(100), nullable=False)
     # Define backref in the Branch class
     vehicles = db.relationship('Vehicle', backref='branch_ref', lazy=True)
+    def __str__(self):
+        return self.location
 
 class Vehicle(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
@@ -94,6 +96,7 @@ class VehicleView(ModelView):
         return redirect(url_for('auth.login'))
 
 admin.add_view(Controller(User, db.session))
+admin.add_view(Controller(Branch, db.session))
 admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(VehicleView(Vehicle, db.session))
 

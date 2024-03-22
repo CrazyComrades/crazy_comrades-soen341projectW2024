@@ -33,12 +33,16 @@
             <ul class="navbar-nav ml-auto">
                 {% if current_user.role == 'Admin' %}
                 <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('views.admin') }}">Admin</a>
+                <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
                 </li>
                 {% endif %}
                 {% if current_user.role == 'Reservation Representative' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
+
                 </li>
                 {% endif %}
                 <li class="nav-item active">
