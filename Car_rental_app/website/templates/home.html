@@ -39,6 +39,7 @@
                 {% if current_user.role == 'Reservation Representative' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
+                    <a class="nav-link" href="{{ url_for('views.reservations_for_clients') }}">Reservation for a Client</a>
                 </li>
                 {% endif %}
                 <li class="nav-item active">
