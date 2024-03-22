@@ -33,6 +33,8 @@ def submit_reservation():
     db.session.add(new_reservation)
     db.session.commit()
     send_confirmation_email(new_reservation)
+        
+    
     
     return redirect(url_for('res.success'))
 
@@ -44,10 +46,6 @@ def send_confirmation_email(reservation):
 
 @res.route('/success')
 def success():
-    flash ("Reservation submitted successfully! An email has been sent to you with the confirmation of your reservation !")
+    flash ("Reservation submitted successfully!The payment has been accepted An email has been sent to you with the confirmation of your reservation !")
     return render_template("home.html")
 
-@res.route('/process_payment', methods=['POST'])
-def process_payment():
-    # Payment processing logic
-    return 'Payment processed successfully'

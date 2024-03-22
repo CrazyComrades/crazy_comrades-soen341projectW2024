@@ -56,6 +56,15 @@ class Vehicle(db.Model):
     availability = db.Column(db.Boolean)
     image = db.Column(db.String(255))
     branch_id = db.Column(db.Integer, db.ForeignKey('branch.id'))
+
+class Payment(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    card_number = db.Column(db.Integer)
+    expiry_date = db.Column(db.String(150))
+    cvv = db.Column(db.Integer)
+    name_on_card = db.Column(db.String(150))
+    billing_adress = db.Column(db.String(150))
+
    
 
 

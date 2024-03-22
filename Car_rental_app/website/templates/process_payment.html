@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Service</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS (for icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Car Rental Service</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if current_user.role == 'Admin' %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
+                </li>
+                {% endif %}
+                {% if current_user.role == 'Reservation Representative' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
+
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/browse">Cars</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.myres') }}">My Reservations</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
+                {% endif %}
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.sign_up') }}"><i class="fas fa-user-plus"></i> Register</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<form action="{{ url_for('process_payment') }}" method="POST">
+    <div class="form-group">
+        <label for="card_number">Card Number:</label>
+        <input type="text" class="form-control" id="card_number" name="card_number" required>
+    </div>
+    <div class="form-group">
+        <label for="expiry_date">Expiry Date:</label>
+        <input type="text" class="form-control" id="expiry_date" name="expiry_date" required>
+    </div>
+    <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" class="form-control" id="cvv" name="cvv" required>
+    </div>
+    <div class="form-group">
+        <label for="name_on_card">Name on Card:</label>
+        <input type="text" class="form-control" id="name_on_card" name="name_on_card" required>
+    </div>
+    <div class="form-group">
+        <label for="billing_address">Billing Address:</label>
+        <input type="text" class="form-control" id="billing_address" name="billing_address" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Payment</button>
+</form>
+
+</body>
+</html>
