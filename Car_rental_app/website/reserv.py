@@ -44,7 +44,7 @@ def send_confirmation_email(reservation):
 
 @res.route('/success')
 def success():
-    flash ("Reservation submitted successfully!")
+    flash ("Reservation submitted successfully! An email has been sent to you with the confirmation of your reservation !")
     return render_template("home.html")
 
 @res.route('/process_payment', methods=['POST'])
