@@ -90,6 +90,3 @@ def vehicles():
 def car_images(filename):
     return send_from_directory('C:/Users/dawis/crazy_comrades-soen341projectW2024/Car_rental_app/website/car_images/Car_rental_app/website', filename)
 
-@views.route('/clientreservation')
-def resforclient():
-    return render_template("resforclient.html")
