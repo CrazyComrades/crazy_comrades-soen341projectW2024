@@ -35,11 +35,11 @@
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
                 </li>
+                {% endif %}
+                {% if current_user.role == 'Reservation Representative' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
                 </li>
-                {% endif %}
-                {% if current_user.role == 'Reservation Representative' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
 
