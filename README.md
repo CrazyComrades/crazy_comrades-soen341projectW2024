@@ -90,7 +90,7 @@ A car rental application is a software platform designed to facilitate the proce
 
 ### Sprint 1 <br>
 
-core features <br>
+core features: <br>
 
 -Start a reservation <br>
 -View/Modify/Cancel a reservation <br>
@@ -101,8 +101,7 @@ core features <br>
 
 ### Sprint 2 <br>
 
-core features <br>
-
+core features: <br>
 
 -Start a reservation <br>
 -View/Modify/Cancel a reservation <br>
@@ -114,7 +113,7 @@ core features <br>
 
 ### Sprint 3 <br>
 
-core features <br>
+core features: <br>
 
 -Find a branch <br>
 -Check-in Process <br>
