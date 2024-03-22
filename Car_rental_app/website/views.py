@@ -75,7 +75,7 @@ def resforclient():
     return render_template("resforclient.html")
 @views.route('/admin')
 def admin():
-    return render_template("admin.html")    
+    return admin.index()
 
 @views.route('/myreservation')
 def myres():
