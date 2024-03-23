@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>My Reservations</h1>
+{% if reservations %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Reservation ID</th>
+      <th>Location</th>
+      <th>Pickup Date</th>
+      <th>Return Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reservation in reservations %}
+    <tr>
+      <td>{{ reservation.id }}</td>
+      <td>{{ reservation.location }}</td>
+      <td>{{ reservation.pickup_date }}</td>
+      <td>{{ reservation.return_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No reservations found.</p>
+{% endif %}
+{% endblock %}

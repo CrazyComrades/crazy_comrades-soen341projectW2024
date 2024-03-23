@@ -33,6 +33,12 @@ def submit_reservation():
     db.session.add(new_reservation)
     db.session.commit()
     send_confirmation_email(new_reservation)
+    # process_payment(request.form):
+     #   send_confirmation_email(new_reservation)
+    #else:
+     #   flash('Please Try Again. The payment was unsuccessful.')
+        
+    
     
     return redirect(url_for('res.success'))
 
@@ -44,10 +50,19 @@ def send_confirmation_email(reservation):
 
 @res.route('/success')
 def success():
-    flash ("Reservation submitted successfully! An email has been sent to you with the confirmation of your reservation !")
+    flash ("Reservation submitted successfully!The payment has been accepted An email has been sent to you with the confirmation of your reservation !")
     return render_template("home.html")
 
-@res.route('/process_payment', methods=['POST'])
-def process_payment():
-    # Payment processing logic
-    return 'Payment processed successfully'
+@res.route('/process_payment')
+def process_payment(form_data):
+    # Simulate payment processing - replace with actual payment processing logic
+    # For demonstration purposes, return True if payment was successful, otherwise return False
+    # You can access form fields using form_data dictionary
+    
+    card_number = form_data['card_number']
+    expiry_date = form_data['expiry_date']
+    cvv = form_data['cvv']
+    name_on_card = form_data['name_on_card']
+    billing_address = form_data['billing_address']
+    
+    return True  # Placeholder for actual payment processing logic

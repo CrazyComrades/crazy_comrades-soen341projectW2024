@@ -68,6 +68,15 @@ class Vehicle(db.Model):
     availability = db.Column(db.Boolean)
     image = db.Column(db.String(255))
     branch_id = db.Column(db.Integer, db.ForeignKey('branch.id'))
+
+class Payment(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    card_number = db.Column(db.Integer)
+    expiry_date = db.Column(db.String(150))
+    cvv = db.Column(db.Integer)
+    name_on_card = db.Column(db.String(150))
+    billing_adress = db.Column(db.String(150))
+
    
 
 
@@ -89,6 +98,15 @@ class RentalAgreement(db.Model):
 
 class ReservationView(ModelView):
     form_columns = ["checkin", "checkout", "final_price", "user", "vehicle_id", "vehicle_price", "vehicle_avail"]
+    
+    def is_accessible(self):
+        return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('auth.login'))
+    
+class PaymentView(ModelView):
+    form_columns = ["card_number", "cvv", "expiry_date"]
     
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')
@@ -125,6 +143,7 @@ admin.add_view(Controller(User, db.session))
 admin.add_view(Controller(Branch, db.session))
 admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(VehicleView(Vehicle, db.session))
+admin.add_view(PaymentView(Payment, db.session))
 
 
 

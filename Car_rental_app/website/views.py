@@ -5,11 +5,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Optional
 from sqlalchemy import or_
-from flask import render_template, request, redirect, url_for
-from .forms import PickUpForm, RentalAgreementForm, PickUpForm2
-from . import db
-from flask_login import login_user, login_required, logout_user, current_user
-from datetime import datetime
+
+
 views = Blueprint('views', __name__)
 
 @views.route('/')
@@ -80,9 +77,9 @@ def resforclient():
 def admin():
     return admin.index()
 
-@views.route('/myreservation')
-def myres():
-    return render_template("myres.html")
+
+
+
 
 @views.route('/browse')
 def vehicles():

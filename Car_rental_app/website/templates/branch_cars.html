@@ -45,9 +45,14 @@
               <p class="card-text">Price: ${{ car.price }}</p>
               <p class="card-text">Mileage: {{ car.mileage }}</p>
               {% if car.availability %}
-                <p class="text-success">Available</p>
+              <p class="text-success">Available</p>
+              {% if current_user.is_authenticated %}
+              <a href="{{ url_for('views.reservation', vehicle_id=car.id, user_id=current_user.id) }}" class="btn btn-primary">Rent Now</a>
               {% else %}
-                <p class="text-danger">Not Available</p>
+              <p>You need to be logged in to rent a vehicle.</p>
+              <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+              {% endif %}              {% else %}
+              <p class="text-danger">Not Available</p>
               {% endif %}
             </div>
           </div>
