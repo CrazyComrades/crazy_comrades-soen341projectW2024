@@ -1,11 +1,14 @@
-from flask import Blueprint, render_template,request, jsonify, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import Vehicle,Branch, Reservation, DamageReport, RentalAgreement
 from flask import send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Optional
 from sqlalchemy import or_
-
+from . import db   ##means from __init__.py import db
+from .forms import PickUpForm, PickUpForm2
+from datetime import datetime
+from flask_login import login_user, login_required, logout_user, current_user
 
 views = Blueprint('views', __name__)
 
@@ -78,9 +81,6 @@ def admin():
     return admin.index()
 
 
-
-
-
 @views.route('/browse')
 def vehicles():
     vehicles = Vehicle.query.all()
@@ -122,12 +122,12 @@ def pick_up_car(reservation_id):
     
     if form.validate_on_submit():
         # Get reservation ID from the form
-        reservation_id = form.reservation_id.data
+        reservation_id = int(form.reservation_id.data)
         
         # Check if the user has a reservation with the entered ID
         if reservation.id != reservation_id:
             flash('Invalid reservation ID.', 'error')
-            return redirect(url_for('pick_up_car', reservation_id=reservation_id))
+            return redirect(url_for('views.pick_up_car', reservation_id=reservation.id))
         
         # Retrieve the associated vehicle based on the reservation's vehicle_id
         vehicle = Vehicle.query.get(reservation.vehicle_id)

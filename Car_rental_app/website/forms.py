@@ -15,6 +15,3 @@ class PickUpForm2(FlaskForm):
     drop_off_location = StringField('Drop-off Location')
     additional_services = StringField('Additional Services')
     submit = SubmitField('Submit')
-class RentalAgreementForm(FlaskForm):
-    damages = TextAreaField('Report Damages (if any)')
-    submit = SubmitField('Submit Rental Agreement')

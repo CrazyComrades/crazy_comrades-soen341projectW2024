@@ -43,8 +43,8 @@ class Reservation(db.Model):
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Boolean)
     email_res = db.Column(db.String(150))
-    branch_id = db.Column(db.Integer, db.ForeignKey('branches.id'))
-    branch = relationship('Branch', primaryjoin='Reservation.branch_id == Branch.id')
+    #branch_id = db.Column(db.Integer, db.ForeignKey('branches.id'))
+    #branch = relationship('Branch', primaryjoin='Reservation.branch_id == Branch.id')
 
     
 class Branch(db.Model):
