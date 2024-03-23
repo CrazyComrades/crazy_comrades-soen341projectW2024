@@ -7,6 +7,67 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Car Rental Service</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% if current_user.role == 'Admin' %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.role == 'Reservation Representative' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
+    
+                    </li>
+                    {% endif %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browse">Cars</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.my_reservations') }}">My Reservations</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.pick_up') }}">Pick Up</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </li>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.sign_up') }}"><i class="fas fa-user-plus"></i> Register</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container mt-5">
         <h1 class="mb-4">Pick Up a Car</h1>
         {% with messages = get_flashed_messages(with_categories=true) %}
