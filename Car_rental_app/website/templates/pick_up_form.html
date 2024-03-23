@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Up a Car</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Pick Up a Car</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="reservation_id">Reservation ID:</label>
+                {{ form.reservation_id(class="form-control", id="reservation_id") }}
+            </div>
+            <div class="form-group">
+                <label for="driver_license">Driver's License:</label>
+                {{ form.driver_license(class="form-control", id="driver_license") }}
+            </div>
+            <div class="form-group">
+                <label for="credit_card">Credit Card:</label>
+                {{ form.credit_card(class="form-control", id="credit_card") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
