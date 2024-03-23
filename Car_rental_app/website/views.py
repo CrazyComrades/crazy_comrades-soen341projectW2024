@@ -134,7 +134,7 @@ def pick_up_car(reservation_id):
 
         if not vehicle:
             flash('Vehicle associated with this reservation not found.', 'error')
-            return redirect(url_for('home'))  # Redirect to home or appropriate page
+            return redirect(url_for('views.home'))  # Redirect to home or appropriate page
         
         # Calculate duration
         pick_up_time = reservation.checkin
@@ -155,7 +155,10 @@ def pick_up_car(reservation_id):
             db.session.commit()
 
         # Create rental agreement
-        price = vehicle.price * duration  # Implement this function to calculate the price
+        # Calculate duration in days
+        duration_days = duration.days + duration.seconds / (3600 * 24)  # Convert timedelta to days
+        price = vehicle.price * duration_days
+
         pick_up_location = reservation.branch.location
         drop_off_location = form.drop_off_location.data
         additional_services = form.additional_services.data
@@ -174,7 +177,7 @@ def pick_up_car(reservation_id):
         db.session.commit()
 
         flash('Car picked up successfully. Rental agreement created.', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('views.home'))
 
     # Pass the reservation to the template context
     return render_template('pick_up_car.html', form=form, reservation=reservation)
