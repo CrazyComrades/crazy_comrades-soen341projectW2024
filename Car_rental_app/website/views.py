@@ -159,7 +159,7 @@ def pick_up_car(reservation_id):
         duration_days = duration.days + duration.seconds / (3600 * 24)  # Convert timedelta to days
         price = vehicle.price * duration_days
 
-        pick_up_location = reservation.branch.location
+        pick_up_location = reservation.location
         drop_off_location = form.drop_off_location.data
         additional_services = form.additional_services.data
 
