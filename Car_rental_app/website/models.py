@@ -77,6 +77,8 @@ class Payment(db.Model):
     cvv = db.Column(db.Integer)
     name_on_card = db.Column(db.String(150))
     billing_adress = db.Column(db.String(150))
+    total_price = db.Column(db.Float,db.ForeignKey('reservation.final_price'))
+    
 
    
 
