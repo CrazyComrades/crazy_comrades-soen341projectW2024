@@ -166,7 +166,7 @@ def pick_up_car(reservation_id):
         rental_agreement = RentalAgreement(
             reservation_id=reservation.id,
             user_id=current_user.id,
-            duration=str(duration),
+            duration=duration_days,
             price=price,
             pick_up_location=pick_up_location,
             drop_off_location=drop_off_location,
@@ -177,7 +177,19 @@ def pick_up_car(reservation_id):
         db.session.commit()
 
         flash('Car picked up successfully. Rental agreement created.', 'success')
-        return redirect(url_for('views.home'))
+        return redirect(url_for('views.rental_agreement_details', reservation_id=reservation_id))
 
     # Pass the reservation to the template context
     return render_template('pick_up_car.html', form=form, reservation=reservation)
+@views.route('/rental_agreement_details/<int:reservation_id>')
+def rental_agreement_details(reservation_id):
+    # Retrieve the rental agreement details based on the reservation ID
+    rental_agreement = RentalAgreement.query.filter_by(reservation_id=reservation_id).first()
+    
+    if rental_agreement:
+        # Render the template with the rental agreement details
+        return render_template('rental_agreement_details.html', rental_agreement=rental_agreement)
+    else:
+        # Handle case where rental agreement is not found
+        flash('Rental agreement not found.', 'error')
+        return redirect(url_for('home'))  # Redirect to home or appropriate page
