@@ -40,6 +40,7 @@ class Reservation(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Specify foreign key relationship
     user = db.relationship("User", back_populates="reservation", foreign_keys=[user_id])
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
+    vehicle = relationship('Vehicle', primaryjoin='Reservation.vehicle_id == Vehicle.id')
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Boolean)
     email_res = db.Column(db.String(150))
@@ -93,6 +94,8 @@ class RentalAgreement(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     reservation = db.relationship('Reservation', backref=db.backref('rental_agreement', uselist=False), lazy=True)
     user = db.relationship('User', backref=db.backref('rental_agreements', lazy=True))
+    pick_up_time = db.Column(db.String(100), nullable=False)
+    drop_off_time = db.Column(db.String(100), nullable=False)
 
 
 
@@ -144,7 +147,7 @@ admin.add_view(Controller(Branch, db.session))
 admin.add_view(ReservationView(Reservation, db.session))
 admin.add_view(VehicleView(Vehicle, db.session))
 admin.add_view(PaymentView(Payment, db.session))
-
+admin.add_view(Controller(RentalAgreement, db.session))
 
 
 

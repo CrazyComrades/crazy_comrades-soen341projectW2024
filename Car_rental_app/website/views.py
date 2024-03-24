@@ -9,6 +9,8 @@ from . import db   ##means from __init__.py import db
 from .forms import PickUpForm, PickUpForm2
 from datetime import datetime
 from flask_login import login_user, login_required, logout_user, current_user
+# Custom filter to convert string to datetime
+
 
 views = Blueprint('views', __name__)
 
@@ -171,25 +173,22 @@ def pick_up_car(reservation_id):
             pick_up_location=pick_up_location,
             drop_off_location=drop_off_location,
             additional_services=additional_services,
-            created_at=datetime.now()
+            created_at=datetime.now(),
+            pick_up_time = pick_up_time,
+            drop_off_time = drop_off_time
         )
         db.session.add(rental_agreement)
         db.session.commit()
 
         flash('Car picked up successfully. Rental agreement created.', 'success')
-        return redirect(url_for('views.rental_agreement_details', reservation_id=reservation_id))
+        return redirect(url_for('views.rental_agreement_details', rental_agreement_id=rental_agreement.id))
 
     # Pass the reservation to the template context
     return render_template('pick_up_car.html', form=form, reservation=reservation)
-@views.route('/rental_agreement_details/<int:reservation_id>')
-def rental_agreement_details(reservation_id):
-    # Retrieve the rental agreement details based on the reservation ID
-    rental_agreement = RentalAgreement.query.filter_by(reservation_id=reservation_id).first()
+@views.route('/rental_agreement_details/<int:rental_agreement_id>')
+def rental_agreement_details(rental_agreement_id):
+    rental_agreement = RentalAgreement.query.get_or_404(rental_agreement_id)
+    vehicle = rental_agreement.reservation.vehicle
+    renter = rental_agreement.reservation.user
     
-    if rental_agreement:
-        # Render the template with the rental agreement details
-        return render_template('rental_agreement_details.html', rental_agreement=rental_agreement)
-    else:
-        # Handle case where rental agreement is not found
-        flash('Rental agreement not found.', 'error')
-        return redirect(url_for('home'))  # Redirect to home or appropriate page
+    return render_template('rental_agreement_details.html', rental_agreement=rental_agreement, vehicle=vehicle, renter=renter)
