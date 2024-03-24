@@ -6,6 +6,8 @@ from flask import redirect, url_for, current_app
 from flask_admin.form.upload import FileUploadField
 from wtforms.fields import FileField
 from wtforms.validators import DataRequired
+from datetime import datetime
+from sqlalchemy.orm import relationship
 
 
 
@@ -20,7 +22,14 @@ class User(db.Model, UserMixin):
     reservation = db.relationship("Reservation", back_populates="user")
     def __str__(self):
         return self.name
-        
+
+class DamageReport(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'))
+    vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
+    description = db.Column(db.String(255))
+
+
     
 class Reservation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,6 +43,9 @@ class Reservation(db.Model):
     vehicle_price = db.Column(db.Float)
     vehicle_avail = db.Column(db.Boolean)
     email_res = db.Column(db.String(150))
+    branch_id = db.Column(db.Integer, db.ForeignKey('branch.id'))
+    branch = relationship('Branch', primaryjoin='Reservation.branch_id == Branch.id')
+
     
 class Branch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,6 +79,20 @@ class Payment(db.Model):
 
    
 
+
+
+class RentalAgreement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    duration = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    pick_up_location = db.Column(db.String(255), nullable=False)
+    drop_off_location = db.Column(db.String(255), nullable=False)
+    additional_services = db.Column(db.String(255), nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    reservation = db.relationship('Reservation', backref=db.backref('rental_agreement', uselist=False), lazy=True)
+    user = db.relationship('User', backref=db.backref('rental_agreements', lazy=True))
 
 
 

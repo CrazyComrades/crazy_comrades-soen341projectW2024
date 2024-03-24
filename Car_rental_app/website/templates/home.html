@@ -56,9 +56,11 @@
                     <a class="nav-link" href="{{ url_for('auth.my_reservations') }}">My Reservations</a>
                 </li>
                 {% endif %}
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="{{ url_for('views.pick_up') }}">Pick Up</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>

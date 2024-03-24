@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Pick Up Car</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.reservation_id.label(class="form-label") }}
+      {{ form.reservation_id(class="form-control") }}
+      {% if form.reservation_id.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.reservation_id.errors %}
+            <span>{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.drop_off_time.label(class="form-label") }}
+      {{ form.drop_off_time(class="form-control") }}
+      {% if form.drop_off_time.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.drop_off_time.errors %}
+            <span>{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.damages.label(class="form-label") }}
+      {{ form.damages(class="form-control") }}
+      {% if form.damages.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.damages.errors %}
+            <span>{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.drop_off_location.label(class="form-label") }}
+      {{ form.drop_off_location(class="form-control") }}
+      {% if form.drop_off_location.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.drop_off_location.errors %}
+            <span>{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.additional_services.label(class="form-label") }}
+      {{ form.additional_services(class="form-control") }}
+      {% if form.additional_services.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.additional_services.errors %}
+            <span>{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
