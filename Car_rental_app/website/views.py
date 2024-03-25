@@ -256,11 +256,15 @@ def rep_checkout(rental_agreement_id):
             rental_agreement.checkout_confirmation = True
             # Send email notification to renter about the confirmation and deductions
             send_confirmation_email(rental_agreement)
+            vehicle = rental_agreement.reservation.vehicle
+            vehicle.availability = True
             flash('Checkout confirmed. An email has been sent to the renter.', 'success')
         else:
 
             rental_agreement.checkout_confirmation = True
             send_confirmation_email(rental_agreement)
+            vehicle = rental_agreement.reservation.vehicle
+            vehicle.availability = True
             flash('Checkout confirmed. Please review the damages and deductions in you email.', 'error')
 
         db.session.commit()

@@ -3,35 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rep Checkout</title>
-    <!-- Add any necessary CSS links -->
+    <title>Confirm Checkout</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 50px; /* Add some space from the top */
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto; /* Center the container */
+        }
+        h1, h2 {
+            text-align: center; /* Center headings */
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Rep Checkout</h1>
-    <h2>Rental Agreement Details</h2>
-    <p>Rental Agreement ID: {{ rental_agreement.id }}</p>
-    <p>User: {{ rental_agreement.reservation.user.name }}</p>
-    <p>Vehicle: {{ rental_agreement.reservation.vehicle.car_model }}</p>
-    <!-- Add more details as needed -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Car Rental Service</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% if current_user.role == 'Admin' %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.role == 'Reservation Representative' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
+    
+                    </li>
+                    <li class="nav-item">
+    
+                        <a class="nav-link" href="{{ url_for('views.checkout_requests') }}">Confirm Check Out</a>
+    
+                    </li>
+                    {% endif %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/browse">Cars</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.my_reservations') }}">My Reservations</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.pick_up') }}">Check in</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('views.checkout') }}">Check out</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </li>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.sign_up') }}"><i class="fas fa-user-plus"></i> Register</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Confirm Checkout</h1>
+        <h2>Rental Agreement Details</h2>
+        <p>Rental Agreement ID: {{ rental_agreement.id }}</p>
+        <p>User: {{ rental_agreement.reservation.user.name }}</p>
+        <p>Vehicle: {{ rental_agreement.reservation.vehicle.car_model }}</p>
+        <!-- Add more details as needed -->
 
-    <h2>Checkout Form</h2>
-    <form action="{{ url_for('views.rep_checkout', rental_agreement_id=rental_agreement.id) }}" method="POST">
-        <div class="form-group">
-            <label for="damages">Damages:</label>
-            <input type="text" id="damages" name="damages">
-        </div>
-        <div class="form-group">
-            <label for="deposit_deduction">Deposit Deduction:</label>
-            <input type="number" id="deposit_deduction" name="deposit_deduction">
-        </div>
-        <div class="form-group">
-            <label for="confirmation">Confirmation:</label>
-            <select id="confirmation" name="confirmation">
-                <option value="confirmed">Confirmed</option>
-                <option value="not_confirmed">Not Confirmed</option>
-            </select>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+        <h2>Checkout Form</h2>
+        <form action="{{ url_for('views.rep_checkout', rental_agreement_id=rental_agreement.id) }}" method="POST">
+            <div class="form-group">
+                <label for="damages">Damages:</label>
+                <input type="text" id="damages" name="damages" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="deposit_deduction">Deposit Deduction:</label>
+                <input type="number" id="deposit_deduction" name="deposit_deduction" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="confirmation">Confirmation:</label>
+                <select id="confirmation" name="confirmation" class="form-control">
+                    <option value="confirmed">Confirmed</option>
+                    <option value="not_confirmed">Not Confirmed</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
