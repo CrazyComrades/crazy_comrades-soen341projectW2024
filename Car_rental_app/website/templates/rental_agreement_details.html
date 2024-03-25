@@ -6,24 +6,21 @@
     <hr>
     <h4>Rental Agreement Number: {{ rental_agreement.id }}</h4>
     <br>
-    <p>This Rental Agreement ("Agreement") is entered into between {{ rental_agreement.rental_company_name }}, located at {{ rental_agreement.rental_company_address }}, hereinafter referred to as the "Rental Company," and the individual or entity identified below, hereinafter referred to as the "Renter":</p>
+    <p>This Rental Agreement ("Agreement") is entered into between Crazy Comrades Services, located at 1455 Blvd. De Maisonneuve Ouest, Montreal, Quebec H3G 1M8 , hereinafter referred to as the "Rental Company," and the individual or entity identified below, hereinafter referred to as the "Renter":</p>
     <br>
     <h5>1. Renter's Information:</h5>
     <p>
         <strong>Name:</strong> {{ renter.name }}<br>
-        <strong>Address:</strong> {{ renter.address }}<br>
-        <strong>Contact Number:</strong> {{ renter.contact_number }}<br>
         <strong>Email Address:</strong> {{ renter.email }}<br>
         <strong>Driver's License Number:</strong> {{ renter.driver_license }}<br>
     </p>
     <h5>2. Vehicle Information:</h5>
     <p>
-        <strong>Make:</strong> {{ vehicle.make }}<br>
-        <strong>Model:</strong> {{ vehicle.model }}<br>
+        <strong>Type:</strong> {{ vehicle.type_car }}<br>
+        <strong>Brand:</strong> {{ vehicle.brand }}<br>
         <strong>Year:</strong> {{ vehicle.year }}<br>
-        <strong>License Plate Number:</strong> {{ vehicle.license_plate }}<br>
-        <strong>Vehicle Identification Number (VIN):</strong> {{ vehicle.vin }}<br>
-        <strong>Color:</strong> {{ vehicle.color }}<br>
+        <strong>Car Model</strong> {{ vehicle.car_model }}<br>
+        <strong>Mileage</strong> {{ vehicle.mileage }}<br>
     </p>
     <h5>3. Rental Details:</h5>
     <p>
@@ -31,9 +28,9 @@
         <strong>Rental End Date:</strong> {{ (rental_agreement.pick_up_time + rental_agreement.duration) }}<br>
         <strong>Pick-up Location:</strong> {{ rental_agreement.pick_up_location }}<br>
         <strong>Drop-off Location:</strong> {{ rental_agreement.drop_off_location }}<br>
-        <strong>Rental Period:</strong> {{ rental_agreement.duration }}<br>
+        <strong>Rental Period in days:</strong> {{ rental_agreement.duration }}<br>
         <strong>Mileage Limit (if applicable):</strong> {{ rental_agreement.mileage_limit }}<br>
-        <strong>Rental Rate:</strong> ${{ rental_agreement.price }}<br>
+        <strong>Rental Price:</strong> ${{ rental_agreement.price }}<br>
         <strong>Additional Services (if any):</strong> {{ rental_agreement.additional_services }}<br>
     </p>
     <h5>4. Rental Terms and Conditions:</h5>
@@ -50,23 +47,27 @@
     <h5>5. Indemnification:</h5>
     <p>The Renter agrees to indemnify and hold harmless the Rental Company, its employees, agents, and affiliates from any claims, liabilities, damages, or expenses arising out of or related to the Renter's use of the vehicle.</p>
     <h5>6. Governing Law:</h5>
-    <p>This Agreement shall be governed by and construed in accordance with the laws of {{ rental_agreement.jurisdiction }}. Any disputes arising under or related to this Agreement shall be resolved exclusively by the courts of {{ rental_agreement.jurisdiction }}.</p>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of Quebec. Any disputes arising under or related to this Agreement shall be resolved exclusively by the courts of Quebec.</p>
     <h5>7. Entire Agreement:</h5>
     <p>This Agreement constitutes the entire understanding between the parties concerning the subject matter hereof and supersedes all prior agreements and understandings, whether written or oral.</p>
-        <h5>8. Signatures:</h5>
-        <p>The parties hereto have executed this Agreement as of the date first written above.</p>
+    <h5>8. Signatures:</h5>
+    <p>The parties hereto have executed this Agreement as of the date first written above.</p>
+    <form method="POST">
         <p>
             <strong>Rental Company:</strong><br>
-            <strong>Signature:</strong> ___________________________<br>
-            <strong>Print Name:</strong> {{ rental_agreement.rental_company_representative }}<br>
-            <strong>Date:</strong> {{ rental_agreement.created_at }}<br>
+            <strong>Signature:</strong> <img src="https://www.signwell.com/assets/vip-signatures/muhammad-ali-signature-3f9237f6fc48c3a04ba083117948e16ee7968aae521ae4ccebdfb8f22596ad22.svg" alt="Company Signature" style="max-width: 200px; max-height: 100px;"><br>
+            <strong>Print Name:</strong> Crazy Comrades<br>
+            <strong>Date:</strong> {{ rental_agreement.created_at }} <br>
         </p>
         <p>
             <strong>Renter:</strong><br>
-            <strong>Signature:</strong> ___________________________<br>
+            <strong>Signature:</strong> <input type="text" name="renter_signature" placeholder="Your Signature"><br>
             <strong>Print Name:</strong> {{ renter.name }}<br>
-            <strong>Date:</strong> _______________________________<br>
+            <strong>Date:</strong> <input type="date" name="renter_date" placeholder="Date"><br>
         </p>
-    </div>
-    {% endblock %}
+        <button type="submit">Confirm Agreement</button>
+    </form>
     
+</div>
+{% endblock %}
+

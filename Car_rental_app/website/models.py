@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     role = db.Column(db.String(150))
+    driver_license = db.Column(db.String(150))
     reservation = db.relationship("Reservation", back_populates="user")
     def __str__(self):
         return self.name
@@ -95,6 +96,8 @@ class RentalAgreement(db.Model):
     user = db.relationship('User', backref=db.backref('rental_agreements', lazy=True))
     pick_up_time = db.Column(db.String(100), nullable=False)
     drop_off_time = db.Column(db.String(100), nullable=False)
+    Confirmation = db.Column(db.Boolean)
+
 
 
 

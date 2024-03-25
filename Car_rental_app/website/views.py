@@ -12,6 +12,8 @@ from flask_login import login_user, login_required, logout_user, current_user
 # Custom filter to convert string to datetime
 
 
+# Add custom filter to Jinja environment
+
 views = Blueprint('views', __name__)
 
 @views.route('/')
@@ -106,8 +108,8 @@ def pick_up():
             matching_reservation = next((r for r in user_reservations if r.id == reservation_id), None)
             
             if matching_reservation:
-                # Proceed with the pick-up process
-                # Include the pick-up logic here
+                current_user.driver_license = form.driver_license.data
+                db.session.commit()  # Commit the changes
                 return redirect(url_for('views.pick_up_car', reservation_id=reservation_id))  # Pass reservation_id
             else:
                 flash('You do not have a reservation with that ID.', 'error')
@@ -175,7 +177,9 @@ def pick_up_car(reservation_id):
             additional_services=additional_services,
             created_at=datetime.now(),
             pick_up_time = pick_up_time,
-            drop_off_time = drop_off_time
+            drop_off_time = drop_off_time,
+            Confirmation = False  
+
         )
         db.session.add(rental_agreement)
         db.session.commit()
@@ -185,10 +189,28 @@ def pick_up_car(reservation_id):
 
     # Pass the reservation to the template context
     return render_template('pick_up_car.html', form=form, reservation=reservation)
-@views.route('/rental_agreement_details/<int:rental_agreement_id>')
+from flask import request, flash, redirect, url_for
+
+@views.route('/rental_agreement_details/<int:rental_agreement_id>', methods=['GET', 'POST'])
 def rental_agreement_details(rental_agreement_id):
     rental_agreement = RentalAgreement.query.get_or_404(rental_agreement_id)
     vehicle = rental_agreement.reservation.vehicle
     renter = rental_agreement.reservation.user
     
+    if request.method == 'POST':
+        # Assuming you have a form with signature and date fields
+        company_signature = request.form.get('company_signature')
+        company_date = request.form.get('company_date')
+        renter_signature = request.form.get('renter_signature')
+        renter_date = request.form.get('renter_date')
+
+        # Update database with confirmation
+        # Assuming you have a column named 'confirmed' in your RentalAgreement model
+        rental_agreement.Confirmation = True  # Update confirmation status
+        db.session.commit()
+
+        flash('Agreement confirmed successfully, A deposit of 500 CAD has been credited. You are free to drive away', 'success')
+        return redirect(url_for('views.home'))  # Redirect to the homepage after confirmation
+
     return render_template('rental_agreement_details.html', rental_agreement=rental_agreement, vehicle=vehicle, renter=renter)
+

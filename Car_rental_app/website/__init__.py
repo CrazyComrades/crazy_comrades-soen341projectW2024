@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_admin import Admin
 from flask_admin.menu import MenuLink
 from flask_mail import Mail
-
+from datetime import datetime
 class MainIndexLink(MenuLink):
     def get_url(self):
         return url_for("views.home")
@@ -17,7 +17,8 @@ DB_NAME = "database.db"
 login_manager = LoginManager()
 mail = Mail()
 
-
+def str_to_datetime(value):
+    return datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
@@ -28,6 +29,7 @@ def create_app():
     app.config['MAIL_USERNAME'] = 'crazycomradessoen@gmail.com'
     app.config['MAIL_PASSWORD'] = 'dzly lcrz qcdb ftol'
     app.config['MAIL_DEFAULT_SENDER'] = 'crazycomradessoen@gmail.com'
+    app.jinja_env.filters['str_to_datetime'] = str_to_datetime
 
     db.init_app(app)
     admin.init_app(app)
