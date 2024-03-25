@@ -27,8 +27,12 @@
                         <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
                     </li>
                     <li class="nav-item">
+
                         <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
-    
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{{ url_for('views.checkout_requests') }}">Confirm Check Out</a>
                     </li>
                     {% endif %}
                     <li class="nav-item active">
@@ -45,6 +49,11 @@
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('views.pick_up') }}">Check in</a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.checkout') }}">Check out</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">

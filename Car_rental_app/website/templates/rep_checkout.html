@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rep Checkout</title>
+    <!-- Add any necessary CSS links -->
+</head>
+<body>
+    <h1>Rep Checkout</h1>
+    <h2>Rental Agreement Details</h2>
+    <p>Rental Agreement ID: {{ rental_agreement.id }}</p>
+    <p>User: {{ rental_agreement.reservation.user.name }}</p>
+    <p>Vehicle: {{ rental_agreement.reservation.vehicle.car_model }}</p>
+    <!-- Add more details as needed -->
+
+    <h2>Checkout Form</h2>
+    <form action="{{ url_for('views.rep_checkout', rental_agreement_id=rental_agreement.id) }}" method="POST">
+        <div class="form-group">
+            <label for="damages">Damages:</label>
+            <input type="text" id="damages" name="damages">
+        </div>
+        <div class="form-group">
+            <label for="deposit_deduction">Deposit Deduction:</label>
+            <input type="number" id="deposit_deduction" name="deposit_deduction">
+        </div>
+        <div class="form-group">
+            <label for="confirmation">Confirmation:</label>
+            <select id="confirmation" name="confirmation">
+                <option value="confirmed">Confirmed</option>
+                <option value="not_confirmed">Not Confirmed</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

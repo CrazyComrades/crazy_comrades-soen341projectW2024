@@ -5,10 +5,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Optional
 from sqlalchemy import or_
-from . import db   ##means from __init__.py import db
+from . import db,mail   ##means from __init__.py import db
 from .forms import PickUpForm, PickUpForm2
 from datetime import datetime
 from flask_login import login_user, login_required, logout_user, current_user
+from flask_mail import Mail,Message
 # Custom filter to convert string to datetime
 
 
@@ -213,4 +214,87 @@ def rental_agreement_details(rental_agreement_id):
         return redirect(url_for('views.home'))  # Redirect to the homepage after confirmation
 
     return render_template('rental_agreement_details.html', rental_agreement=rental_agreement, vehicle=vehicle, renter=renter)
+
+@views.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    if request.method == 'POST':
+        reservation_id = request.form['reservation_id']
+        drop_off_location = request.form['drop_off_location']
+        return_date = datetime.strptime(request.form['return_date'], '%Y-%m-%d')
+        
+        # Retrieve reservation based on ID
+        reservation = Reservation.query.get_or_404(reservation_id)
+        
+        # Update rental agreement with drop-off location and return date
+        rental_agreement = RentalAgreement.query.filter_by(reservation_id=reservation.id).first()
+        rental_agreement.drop_off_location = drop_off_location
+        rental_agreement.drop_off_time = return_date
+        rental_agreement.checkout_confirmation = False  # Reset confirmation status
+        db.session.commit()
+        
+        flash('Checkout submitted. Awaiting confirmation from the reservation representative.', 'success')
+        return redirect(url_for('views.home'))
+
+    return render_template('checkout.html')
+
+    
+@views.route('/rep_checkout/<int:rental_agreement_id>', methods=['GET', 'POST'])
+def rep_checkout(rental_agreement_id):
+    rental_agreement = RentalAgreement.query.get_or_404(rental_agreement_id)
+
+    if request.method == 'POST':
+        # Assuming you have a form with fields for damages, deposit deduction, and confirmation
+        damages = request.form['damages']
+        deposit_deduction = request.form['deposit_deduction']
+        checkout_confirmation = request.form.get('confirmation')
+
+        # Update rental agreement with confirmation and any deductions made
+        rental_agreement.damages = damages
+        rental_agreement.deposit_deduction = deposit_deduction
+
+        if checkout_confirmation == 'confirmed':
+            rental_agreement.checkout_confirmation = True
+            # Send email notification to renter about the confirmation and deductions
+            send_confirmation_email(rental_agreement)
+            flash('Checkout confirmed. An email has been sent to the renter.', 'success')
+        else:
+
+            rental_agreement.checkout_confirmation = True
+            send_confirmation_email(rental_agreement)
+            flash('Checkout confirmed. Please review the damages and deductions in you email.', 'error')
+
+        db.session.commit()
+
+        return redirect(url_for('views.home'))
+
+    return render_template('rep_checkout.html', rental_agreement=rental_agreement)
+
+def send_confirmation_email(rental_agreement):
+    
+    # Retrieve the reservation associated with the rental agreement
+    reservation = rental_agreement.reservation
+    
+    # Retrieve the renter's email from the reservation
+    renter_email = reservation.user.email
+
+    rental_agreement.deposit_deduction = int(request.form['deposit_deduction'])
+    
+    # Render the email template with necessary details
+    subject = "Confirmation of Car Rental Agreement"
+    recipients = [renter_email]
+
+    # Send the email
+    msg = Message(subject, recipients=recipients)
+    msg.body = f"You have been succesfully checkout!\n Reservation ID: {reservation.id}!\n A total of ${rental_agreement.deposit_deduction} has been deducted from your deposit.\n You will then receive confirmation from your bank that you will be receiving {500-rental_agreement.deposit_deduction}.\n Thank you for doing business with us! \nIf you have been deducted money the damages will appear below :\n {rental_agreement.damages}  "
+    mail.send(msg)
+
+from flask import render_template
+
+@views.route('/checkout_requests', methods=['GET'])
+def checkout_requests():
+    # Query all rental agreements pending checkout confirmation
+    pending_checkouts = RentalAgreement.query.filter_by(checkout_confirmation=False).all()
+    return render_template('list_checkouts.html', pending_checkouts=pending_checkouts)
+
+
 
