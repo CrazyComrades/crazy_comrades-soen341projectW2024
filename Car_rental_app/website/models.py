@@ -76,12 +76,9 @@ class Payment(db.Model):
     expiry_date = db.Column(db.String(150))
     cvv = db.Column(db.Integer)
     name_on_card = db.Column(db.String(150))
-    billing_adress = db.Column(db.String(150))
+    billing_address = db.Column(db.String(150))
     total_price = db.Column(db.Float,db.ForeignKey('reservation.final_price'))
     
-
-   
-
 
 
 class RentalAgreement(db.Model):
@@ -111,7 +108,7 @@ class ReservationView(ModelView):
         return redirect(url_for('auth.login'))
     
 class PaymentView(ModelView):
-    form_columns = ["card_number", "cvv", "expiry_date"]
+    form_columns = ["card_number", "cvv", "expiry_date","name_on_card", "billing_address","total_price"]
     
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == 'Admin' or current_user.role == 'Reservation Representative')

@@ -28,18 +28,16 @@ def submit_reservation():
     vehicle_price = float(vehicle.price)
     total_price = duration * vehicle_price
     
-    # session['total_price']=total_price
+    
 
     new_reservation = Reservation(location=location, checkin=checkin, email_res=email_res,checkout=checkout, vehicle_id=vehicle_id,user_id=user_id,vehicle_price=vehicle.price, final_price=total_price)
    
     db.session.add(new_reservation)
     db.session.commit()
 
-    send_confirmation_email(new_reservation)
-
-    return redirect(url_for('res.success'))
+    return redirect(url_for('res.process_payment', total_price=total_price))
     
-    # return redirect(url_for('res.process_payment'))
+    
 
 def send_confirmation_email(reservation):
     # Construct email message
@@ -52,39 +50,41 @@ def success():
     flash ("Reservation submitted successfully!The payment has been accepted An email has been sent to you with the confirmation of your reservation !")
     return render_template("home.html")
 
-# @res.route('/process_payment', methods=['GET','POST'])
-# def process_payment():
-#     total_price = session.get('total_price')
-    
-#     if request.method == 'POST':
-#         card_number = request.form['card_number']
-#         expiry_date = request.form['expiry_date']
-#         cvv = request.form['cvv']
-#         name_on_card = request.form['name_on_card']
-#         billing_address = request.form['billing_address']
 
-        
-#     payment = Payment(
-#             card_number=card_number,
-#             expiry_date=expiry_date,
-#             cvv=cvv,
-#             name_on_card=name_on_card,
-#             billing_address=billing_address,
-#             total_price=total_price
-#         )
+@res.route('/process_payment', methods=["GET","POST"])
+def process_payment():
+    if request.method == "POST":
+        # Retrieve form fields
+        card_number = request.form.get('card_number')
+        expiry_date = request.form.get('expiry_date')
+        cvv = request.form.get('cvv')
+        name_on_card = request.form.get('name_on_card')
+        billing_address = request.form.get('billing_address')
+        total_price = request.form.get('total_price')
 
-#     db.session.add(payment)
-#     db.session.commit()
+        # Check if any required form field is missing
+        if None in (card_number, expiry_date, cvv, name_on_card, billing_address, total_price):
+            flash('Please fill out all required fields.')
+            return redirect(url_for('res.process_payment'))
 
-#     payment_successful=True
-    
-#     if payment_successful:
-    
-#         reservation_id = request.form.get('reservation_id')
-#         reservation = Reservation.query.get_or_404(reservation_id)
-#         send_confirmation_email(reservation)
-#         return redirect(url_for('res.success'))
-#     else:
-#         return flash('Please Try Again. The payment was unsuccessful.')
-        
+        # Create a new Payment object
+        new_payment = Payment(
+            card_number=card_number,
+            expiry_date=expiry_date,
+            cvv=cvv,
+            name_on_card=name_on_card,
+            billing_address=billing_address,
+            total_price=total_price
+        )
+
+        # Add the new_payment to the database
+        db.session.add(new_payment)
+        db.session.commit()
+
+        flash('Payment successful.')
+        return redirect(url_for('res.success'))
+
+# If it's a GET request, render the payment form
+    total_price = request.args.get('total_price')
+    return render_template('payment_form.html', total_price=total_price)
 
