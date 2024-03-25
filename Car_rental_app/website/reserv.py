@@ -42,7 +42,7 @@ def submit_reservation():
 def send_confirmation_email(reservation):
     # Construct email message
     msg = Message('Reservation Confirmation', recipients=[reservation.email_res])
-    msg.body = f"Your reservation details:\nLocation: {reservation.location}\nCheck-in: {reservation.checkin}\nCheck-out: {reservation.checkout}\nVehicle ID: {reservation.vehicle_id}\nVehicle Price: {reservation.vehicle_price}\nFinal Price: {reservation.final_price}"
+    msg.body = f"Your reservation details:\nLocation: {reservation.location}\nCheck-in: {reservation.checkin}\nCheck-out: {reservation.checkout}\nReservation ID: {reservation.id}\nVehicle Price per day: ${reservation.vehicle_price}\nFinal Price: ${reservation.final_price}"
     mail.send(msg)
 
 @res.route('/success')

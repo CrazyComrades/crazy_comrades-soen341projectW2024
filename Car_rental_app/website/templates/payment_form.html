@@ -4,30 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Process Payment</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS (for icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h2>Payment Information</h2>
-    <p>Total Price: ${{ total_price }}</p> <!-- Display the total price -->
-    <form method="POST" action="{{ url_for('res.process_payment') }}">
-        <label for="card_number">Card Number:</label><br>
-        <input type="text" id="card_number" name="card_number" required><br>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Car Rental Service</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if current_user.role == 'Admin' %}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a>
+                </li>
+                {% endif %}
+                {% if current_user.role == 'Reservation Representative' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.resforclient') }}">Reservation for a Client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.admin') }}">Reservation Representative</a>
 
-        <label for="expiry_date">Expiry Date:</label><br>
-        <input type="text" id="expiry_date" name="expiry_date" required><br>
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/browse">Cars</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.my_reservations') }}">My Reservations</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('views.pick_up') }}">Pick Up</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
+                {% endif %}
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.sign_up') }}"><i class="fas fa-user-plus"></i> Register</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        <label for="cvv">CVV:</label><br>
-        <input type="text" id="cvv" name="cvv" required><br>
-
-        <label for="name_on_card">Name on Card:</label><br>
-        <input type="text" id="name_on_card" name="name_on_card" required><br>
-
-        <label for="billing_address">Billing Address:</label><br>
-        <input type="text" id="billing_address" name="billing_address" required><br>
-
-        <!-- Hidden input field to pass total price -->
-        <input type="hidden" name="total_price" value="{{ total_price }}">
-
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container mt-5">
+        <h2 class="mb-4">Payment Information</h2>
+        <p>Total Price: ${{ total_price }}</p> <!-- Display the total price -->
+        <form method="POST" action="{{ url_for('res.process_payment') }}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="card_number">Card Number</label>
+                <input type="text" class="form-control" id="card_number" name="card_number" required>
+                <div class="invalid-feedback">Please enter a valid card number.</div>
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date</label>
+                <input type="text" class="form-control" id="expiry_date" name="expiry_date" required>
+                <div class="invalid-feedback">Please enter a valid expiry date.</div>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required>
+                <div class="invalid-feedback">Please enter a valid CVV.</div>
+            </div>
+            <div class="form-group">
+                <label for="name_on_card">Name on Card</label>
+                <input type="text" class="form-control" id="name_on_card" name="name_on_card" required>
+                <div class="invalid-feedback">Please enter the name on the card.</div>
+            </div>
+            <div class="form-group">
+                <label for="billing_address">Billing Address</label>
+                <input type="text" class="form-control" id="billing_address" name="billing_address" required>
+                <div class="invalid-feedback">Please enter the billing address.</div>
+            </div>
+            <!-- Hidden input field to pass total price -->
+            <input type="hidden" name="total_price" value="{{ total_price }}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS (optional, for form validation) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enable form validation with Bootstrap
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
-</html>
+    </html>
