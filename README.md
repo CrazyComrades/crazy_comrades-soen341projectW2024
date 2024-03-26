@@ -119,5 +119,6 @@ core features: <br>
 -Check-in Process <br>
 -Check-out Process <br>
 
+Video Instruction: https://youtu.be/dAy5L1hFz-0 
 
  
