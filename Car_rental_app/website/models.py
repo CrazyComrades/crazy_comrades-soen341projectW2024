@@ -96,7 +96,7 @@ class RentalAgreement(db.Model):
     user = db.relationship('User', backref=db.backref('rental_agreements', lazy=True))
     pick_up_time = db.Column(db.String(100), nullable=False)
     drop_off_time = db.Column(db.DateTime(timezone=True), default=func.now())
-    Confirmation = db.Column(db.Boolean)
+    confirmation = db.Column(db.Boolean)
     damages = db.Column(db.String(150))
     deposit_deduction = db.Column(db.Float)
     checkout_confirmation = db.Column(db.Boolean)
