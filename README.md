@@ -125,7 +125,7 @@ Video Instruction: https://youtu.be/dAy5L1hFz-0
 
 -Month-specific insights <br>
 -User-friendly interface <br>
--Select specific months and years for in-depth analysis <br>
+-Select specific months and years for in-depth analysis  <br>
 -Access the feature via the "Analytics" section, with a simple click on the "Targeted Month Analysis" tab <br>
 
 
