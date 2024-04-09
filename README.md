@@ -119,5 +119,19 @@ core features: <br>
 -Check-in Process <br>
 -Check-out Process <br>
 
+Video Instruction: https://youtu.be/dAy5L1hFz-0 
+
+### Sprint 4 <br>
+
+-Month-specific insights <br>
+-User-friendly interface <br>
+-Select specific months and years for in-depth analysis  <br>
+-Access the feature via the "Analytics" section, with a simple click on the "Targeted Month Analysis" tab <br>
+
+
+
+
+
+
 
  
