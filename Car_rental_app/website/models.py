@@ -130,15 +130,7 @@ class Controller(ModelView):
         return redirect(url_for('auth.login'))
 
 class VehicleView(ModelView):
-    form_extra_fields = {
-        'image': FileUploadField(
-            label='Image',
-            base_path='C:/Users/dawis/crazy_comrades-soen341projectW2024/Car_rental_app/website/car_images/Car_rental_app/website',
-            relative_path='Car_rental_app/website/car_images/Car_rental_app/website',
-            validators=[DataRequired()],
-            allowed_extensions=['jpg', 'png']
-        )
-    }
+  
     
 
     def is_accessible(self):
