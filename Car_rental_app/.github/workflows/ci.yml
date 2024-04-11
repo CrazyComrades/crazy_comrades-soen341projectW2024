@@ -4,13 +4,10 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  ci:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -25,7 +22,30 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          # If requirements.txt is in a different folder, adjust the path accordingly:
+          # pip install -r path/to/requirements.txt
       
-      - name: Run tests
+      # Add more CI steps here (linting, testing, etc.)
+
+  cd:
+    runs-on: windows-latest
+    needs: ci
+    if: github.ref == 'refs/heads/main'  # Only deploy on main branch
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      
+      - name: Install dependencies
         run: |
-          pytest tests/
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # If requirements.txt is in a different folder, adjust the path accordingly:
+          # pip install -r path/to/requirements.txt
+      
+      # Add deployment steps here (building, deploying, etc.)
