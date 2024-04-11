@@ -1,8 +1,8 @@
 # tests/test.py
 import unittest
 from datetime import datetime
-from . import app, db  
-from . import Reservation, RentalAgreement  
+from website import app, db  
+from website.models import Reservation, RentalAgreement  
 
 class TestFlaskApp(unittest.TestCase):
 
