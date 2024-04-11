@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r crazy_comrades-soen341projectW2024/Car_rental_app/.github/workflows/requirements.txt
+          pip install -r crazy_comrades-soen341projectW2024/Car_rental_app/.github/workflows/requirements.txtd
       
       - name: Run tests
         run: |
