@@ -27,12 +27,11 @@ jobs:
           #python -m unittest Car_rental_app.tests.my_test
  
       
-      # Add more CI steps here (linting, testing, etc.)
 
   cd:
     runs-on: windows-latest
     needs: ci
-    if: github.ref == 'refs/heads/main'  # Only deploy on main branch
+    if: github.ref == 'refs/heads/main'  
 
     steps:
       - name: Checkout repository
