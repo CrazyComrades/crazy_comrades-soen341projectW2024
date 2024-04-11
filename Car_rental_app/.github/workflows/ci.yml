@@ -21,9 +21,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+<<<<<<< HEAD
           pip install -r requirements.txt
           # If requirements.txt is in a different folder, adjust the path accordingly:
           # pip install -r path/to/requirements.txt
+=======
+          pip install -r crazy_comrades-soen341projectW2024/Car_rental_app/.github/workflows/requirements.txt
+>>>>>>> a991e17a0d691b08dde68c5619ad3c7eed3d78c5
       
       # Add more CI steps here (linting, testing, etc.)
 
@@ -43,9 +47,13 @@ jobs:
       
       - name: Install dependencies
         run: |
+<<<<<<< HEAD
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           # If requirements.txt is in a different folder, adjust the path accordingly:
           # pip install -r path/to/requirements.txt
       
       # Add deployment steps here (building, deploying, etc.)
+=======
+          pytest crazy_comrades-soen341projectW2024/Car_rental_app/tests/test.py
+>>>>>>> a991e17a0d691b08dde68c5619ad3c7eed3d78c5
