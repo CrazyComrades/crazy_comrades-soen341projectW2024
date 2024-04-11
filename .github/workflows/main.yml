@@ -21,9 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          # If requirements.txt is in a different folder, adjust the path accordingly:
-          # pip install -r path/to/requirements.txt
+          pip install -r C:\Users\dawis\crazy_comrades-soen341projectW2024\Car_rental_app\requirements.txt
       
       # Add more CI steps here (linting, testing, etc.)
 
