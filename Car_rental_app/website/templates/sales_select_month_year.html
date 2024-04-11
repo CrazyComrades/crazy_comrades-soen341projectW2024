@@ -25,7 +25,7 @@
                 <label for="year">Year:</label>
                 <select class="form-control" name="year" id="year">
                     <!-- Add options for years, from 2020 to the current year -->
-                    {% for year in range(2020, datetime.now().year + 1) %}
+                    {% for year in range(2020, 2025) %}
                         <option value="{{ year }}">{{ year }}</option>
                     {% endfor %}
                 </select>

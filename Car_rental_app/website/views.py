@@ -308,8 +308,6 @@ def checkout_requests():
 
 
 
-
-
 @views.route('/admin/sales', methods=['GET', 'POST'])
 def admin_sales():
     if request.method == 'POST':
@@ -331,7 +329,6 @@ def admin_sales():
         total_sales = sum(agreement.price for agreement in rental_agreements)
         
         # Pass rental agreements data to the template context
-        return render_template('admin_sales.html', total_sales=total_sales, month=month, year=year, rental_agreements=rental_agreements)
+        return render_template('admin_sales.html', total_sales=total_sales, month=month, year=year, rental_agreements=rental_agreements, datetime = datetime)
     
-    return render_template('sales_select_month_year.html')
-
+    return render_template('sales_select_month_year.html',datetime = datetime)
