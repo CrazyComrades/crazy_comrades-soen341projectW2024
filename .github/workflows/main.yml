@@ -21,9 +21,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Add the find command here to locate requirements.txt files
-          find . -regex '.*requirements.txt$' -exec pip install --requirement {} \;
-
+          pip install -r requirements.txt
+         
+      
       # Add more CI steps here (linting, testing, etc.)
 
   cd:
@@ -43,9 +43,5 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Add the find command here to locate requirements.txt files
-          find . -regex '.*requirements.txt$' -exec pip install --requirement {} \;
-          # If requirements.txt is in a different folder, adjust the path accordingly:
-          # find . -regex 'path/to/requirements.txt' -exec pip install --requirement {} \;
-
-      # Add deployment steps here (building, deploying, etc.)
+          pip install -r requirements.txt
+          
