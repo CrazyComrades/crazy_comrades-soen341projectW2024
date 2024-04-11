@@ -2,7 +2,7 @@
 import unittest
 from datetime import datetime
 from ..website import db  
-from website.models import Reservation, RentalAgreement  
+from ..website.models import Reservation, RentalAgreement  
 from .. import main
 
 app = main.app
