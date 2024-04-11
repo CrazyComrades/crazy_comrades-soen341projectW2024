@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Total Sales for {{ month }}/{{ year }}</h1>
+    <p>Total Sales: ${{ total_sales }}</p>
+
+    <h2>Rental Agreements Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rental Agreement Number</th>
+                <th>User</th>
+                <th>Vehicle</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Pick-up Location</th>
+                <th>Drop-off Location</th>
+                <th>Additional Services</th>
+                <th>Created At</th>
+                <th>Confirmation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agreement in rental_agreements %}
+            <tr>
+                <td>{{ agreement.id }}</td>
+                <td>{{ agreement.user.name }}</td>
+                <td>{{ agreement.reservation.vehicle.brand }} {{ agreement.reservation.vehicle.car_model }}</td>
+                <td>{{ agreement.duration }}</td>
+                <td>${{ agreement.price }}</td>
+                <td>{{ agreement.pick_up_location }}</td>
+                <td>{{ agreement.drop_off_location }}</td>
+                <td>{{ agreement.additional_services }}</td>
+                <td>{{ agreement.created_at }}</td>
+                <td>{{ "Confirmed" if agreement.confirmation else "Not Confirmed" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('views.admin_sales') }}">Back to Select Month and Year</a>
+{% endblock %}

@@ -10,6 +10,11 @@ from .forms import PickUpForm, PickUpForm2
 from datetime import datetime
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_mail import Mail,Message
+
+from flask import render_template, request
+from sqlalchemy import func
+from datetime import datetime
+from .models import RentalAgreement
 # Custom filter to convert string to datetime
 
 
@@ -179,7 +184,7 @@ def pick_up_car(reservation_id):
             created_at=datetime.now(),
             pick_up_time = pick_up_time,
             drop_off_time = drop_off_time,
-            Confirmation = False  
+            confirmation = False  
 
         )
         db.session.add(rental_agreement)
@@ -207,7 +212,7 @@ def rental_agreement_details(rental_agreement_id):
 
         # Update database with confirmation
         # Assuming you have a column named 'confirmed' in your RentalAgreement model
-        rental_agreement.Confirmation = True  # Update confirmation status
+        rental_agreement.confirmation = True  # Update confirmation status
         db.session.commit()
 
         flash('Agreement confirmed successfully, A deposit of 500 CAD has been credited. You are free to drive away', 'success')
@@ -302,3 +307,28 @@ def checkout_requests():
 
 
 
+
+@views.route('/admin/sales', methods=['GET', 'POST'])
+def admin_sales():
+    if request.method == 'POST':
+        month = int(request.form['month'])
+        year = int(request.form['year'])
+        
+        # Calculate start and end dates of the specified month
+        start_date = datetime(year, month, 1)
+        end_date = datetime(year, month, 1).replace(month=month+1) if month < 12 else datetime(year, 12, 31)
+        
+        # Query confirmed rental agreements within the specified month
+        rental_agreements = RentalAgreement.query.filter(
+            RentalAgreement.confirmation == True,
+            RentalAgreement.created_at >= start_date,
+            RentalAgreement.created_at <= end_date
+        ).all()
+        
+        # Calculate total sales
+        total_sales = sum(agreement.price for agreement in rental_agreements)
+        
+        # Pass rental agreements data to the template context
+        return render_template('admin_sales.html', total_sales=total_sales, month=month, year=year, rental_agreements=rental_agreements, datetime = datetime)
+    
+    return render_template('sales_select_month_year.html',datetime = datetime)

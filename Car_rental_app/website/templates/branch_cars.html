@@ -31,13 +31,17 @@
       </div>
     </div>
   </form>
-
+  <style>
+    .equal-img-height {
+      height: 200px; /* Adjust this value as needed to set the desired height for the images */
+    }
+  </style>
   <div class="container mt-4">
     <div class="row">
       {% for car in cars %}
         <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="{{ car.image }}" class="card-img-top" alt="Car Image">
+          <div class="card h-100"> <!-- Added h-100 class to ensure cards have equal height -->
+            <img src="{{ car.image }}" class="card-img-top equal-img-height" alt="Car Image"> <!-- Added equal-img-height class -->
             <div class="card-body">
               <h5 class="card-title">{{ car.brand }} {{ car.car_model }}</h5>
               <p class="card-text">Type: {{ car.type_car }}</p>
@@ -45,14 +49,15 @@
               <p class="card-text">Price: ${{ car.price }}</p>
               <p class="card-text">Mileage: {{ car.mileage }}</p>
               {% if car.availability %}
-              <p class="text-success">Available</p>
-              {% if current_user.is_authenticated %}
-              <a href="{{ url_for('views.reservation', vehicle_id=car.id, user_id=current_user.id) }}" class="btn btn-primary">Rent Now</a>
+                <p class="text-success">Available</p>
+                {% if current_user.is_authenticated %}
+                  <a href="{{ url_for('views.reservation', vehicle_id=car.id, user_id=current_user.id) }}" class="btn btn-primary">Rent Now</a>
+                {% else %}
+                  <p>You need to be logged in to rent a vehicle.</p>
+                  <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+                {% endif %}
               {% else %}
-              <p>You need to be logged in to rent a vehicle.</p>
-              <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
-              {% endif %}              {% else %}
-              <p class="text-danger">Not Available</p>
+                <p class="text-danger">Not Available</p>
               {% endif %}
             </div>
           </div>
@@ -60,4 +65,5 @@
       {% endfor %}
     </div>
   </div>
+  
 {% endblock %}
