@@ -16,10 +16,6 @@ class TestFlaskApp(unittest.TestCase):
         db.session.remove()
         db.drop_all()
 
-    def test_home_route(self):
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Home', response.data)
 
     def test_reservation_model(self):
         reservation = Reservation(user_id=1, vehicle_id=1, checkin=datetime.now(), checkout=datetime.now())

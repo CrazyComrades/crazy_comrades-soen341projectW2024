@@ -1,2 +1,2 @@
 # tests/__init__.py
-from test import TestFlaskApp
+from .my_test import TestFlaskApp
